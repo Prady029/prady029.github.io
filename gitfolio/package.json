@@ -1,0 +1,48 @@
+{
+  "name": "gitfolio",
+  "version": "0.1.5",
+  "description": "a portfolio website for everyone to showcase their work",
+  "main": "build.js",
+  "bin": "bin/gitfolio.js",
+  "scripts": {
+    "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
+    "clean": "rm -rf ./dist/*",
+    "prettier": "prettier --write \"./**/*.{js,jsx,json,html,css,md}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "@prady029",
+    "email": "pradyumnasahoo029@gmail.com",
+    "url": "https://github.com/prady029"
+  },
+  "bugs": "https://github.com/prady029/gitfolio/issues",
+  "homepage": "https://github.com/prady029/gitfolio",
+  "keywords": [
+    "personal-website",
+    "github",
+    "portfolio",
+    "portfolio website",
+    "blog website",
+    "blog",
+    "gitfolio",
+    "git"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prady029/gitfolio"
+  },
+  "license": "GPL-3.0",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "commander": "^7.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "github-emoji": "^1.2.0",
+    "got": "^11.8.2",
+    "handlebars": "^4.7.7",
+    "jsdom": "^16.5.3",
+    "ncp": "^2.0.0",
+    "prettier": "^2.2.1"
+  }
+}
