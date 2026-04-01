@@ -82,7 +82,7 @@ export default function HeroSection() {
             >
               <span className="text-white/80">Hi, I&apos;m</span>
               <br />
-              <span className="inline-block bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+              <span className="inline-block text-gradient-fix bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
                 Pradyumna
               </span>
             </h1>
@@ -144,7 +144,7 @@ export default function HeroSection() {
                   className="backdrop-blur-sm bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-center hover:border-white/[0.12] transition-colors duration-300"
                 >
                   <div
-                    className="inline-block font-heading text-2xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent"
+                    className="inline-block text-gradient-fix font-heading text-2xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent"
                     style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
                   >
                     {stat.value}

@@ -54,6 +54,16 @@
   .text-gradient-cyan-violet {
     @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent;
   }
+  .text-gradient-fix {
+    color: #dbeafe;
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .text-gradient-fix {
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+  }
   .animate-spin-reverse-slow {
     animation: spin-reverse 32s linear infinite;
   }
