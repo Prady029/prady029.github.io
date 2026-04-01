@@ -1,0 +1,166 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape Pradyumna Kumar Sahoo} \\ \vspace{1pt}
+    {\underline{pradyumna.sahoo@outlook.in}} $|$
+    \small {\underline{+91-7540885886}} $|$
+    \href{https://www.linkedin.com/in/prady029}{\underline{linkedin.com/in/prady029}} $|$
+    \small {\underline{Hyderabad, India}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+Impact-driven Data Scientist with 5 years of experience building production-grade AI/ML systems across Medical AI, NLP, Computer Vision, and Generative AI. Proven track record in architecting GraphRAG pipelines, fine-tuning large medical language models, developing voice agents for clinical applications, and leading cross-functional teams. Seeking a Senior Data Scientist role to drive AI innovation at scale.
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Senior Data Scientist}{August 2025 -- Present}
+      {Mondee Pvt. Ltd.}{Hyderabad, India}
+      \resumeItemListStart
+        \resumeItem{Architected a \textbf{medical-grade GraphRAG chatbot} for clinical decision support by constructing structured knowledge graphs from medical textbooks, enabling doctors to query drug interactions and treatment protocols with traceable, hallucination-resistant responses.}
+        \resumeItem{Engineered a \textbf{drug--drug interaction checker and drug dosage scheduler} by integrating real-time data from \textbf{RxNorm} and \textbf{PubMed} APIs, surfacing conflict alerts and patient-specific dosage recommendations within the chat interface.}
+        \resumeItem{Led \textbf{end-to-end fine-tuning of Medgemma-27b-text-it} for domain-specific clinical NLP tasks, coordinating data curation, training, and evaluation pipelines with engineers from \textbf{IIT Madras and IIT Hyderabad}.}
+        \resumeItem{Directed \textbf{large-scale data preparation for ASR fine-tuning of gemma-3n-e2b-it}, overseeing audio data collection, annotation, and quality control workflows to build a medical voice agent capable of real-time clinical transcription and query resolution.}
+        \resumeItem{Led a cross-institutional team spanning \textbf{IIT Madras and IIT Hyderabad}, defining technical roadmap, conducting code reviews, and mentoring junior researchers on LLM fine-tuning and graph-based retrieval systems.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+\vspace{-0.5pt}
+
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Data Scientist}{December 2023 -- July 2025}
+      {ADP India Pvt. Ltd.}{Hyderabad, India}
+      \resumeItemListStart
+        \resumeItem{Designed and deployed a \textbf{Knowledge-Graph based RAG pipeline} on AWS Neptune \& Bedrock, enhancing financial data processing accuracy and minimizing AI hallucinations. Recognized as \textbf{runner-up in the ADP Global Hackathon.}}
+        \resumeItem{Developed an intelligent \textbf{Process Mining solution for Global Payroll Services} that analyzed transaction patterns across millions of client records to optimize payment workflows and eliminate operational bottlenecks on \textbf{73 cycles on average per client}, in collaboration with Client On-boarding Teams.}
+        \resumeItem{Engineered an \textbf{agentic assistant} that drafts context-aware emails and schedules meetings in real-time by checking live calendars within user chat sessions, saving equivalent to \textbf{24 hours per user per month} via task automation; currently being rolled out across all ADP employees.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+\vspace{-0.5pt}
+
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Junior Data Scientist}{June 2021 -- December 2023}
+      {Claim Genius Pvt. Ltd.}{Remote, India}
+      \resumeItemListStart
+        \resumeItem{Built a high-performance \textbf{Instance Segmentation pipeline with Detectron2} and FastAPI for model serving, accelerating vehicle damage assessment processing by \textbf{26\%} while improving mean Average Precision (mAP) by \textbf{12\%.}}
+        \resumeItem{Enhanced \textbf{model interpretability for regulatory compliance} by integrating GradCAM++ visualizations, offering stakeholders transparent and auditable AI decision insights.}
+        \resumeItem{Trained \textbf{GAN models for synthetic image generation} to address class imbalance and augment training diversity in vehicle insurance damage detection datasets.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small
+    \item \textbf{Core Competencies:} Machine Learning, Generative AI, GraphRAG, Knowledge Graph Construction, Medical AI, ASR, NLP, Computer Vision, Process Mining, Agentic Systems
+    \item \textbf{LLMs \& Fine-tuning:} Medgemma-27b-text-it, Gemma-3n (ASR), LLaMA, Hugging Face Transformers, PEFT / LoRA, LangChain, LangGraph, Prompt Engineering
+    \item \textbf{AI/ML Frameworks:} PyTorch, TensorFlow, Scikit-learn, FastAPI, OpenCV, Detectron2, YOLO, NLTK, SpaCy
+    \item \textbf{Knowledge \& Data:} Graph Databases (AWS Neptune), RxNorm API, PubMed API, PostgreSQL, Apache Spark, Airflow, ETL Pipeline Design
+    \item \textbf{Infrastructure \& Tools:} AWS (Neptune, S3, Lambda, Bedrock), Docker, Git, Real-time Analytics, Big Data Processing
+\end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small
+    \item \textbf{Agentic Knowledge Graph Construction} -- DeepLearning.AI $\times$ Neo4j \hfill \textit{Aug 2025}
+    \item \textbf{Neo4j Fundamentals} -- Neo4j GraphAcademy \hfill \textit{Jul 2025}
+    \item \textbf{Pretraining LLMs} -- DeepLearning.AI $\times$ Upstage \hfill \textit{Feb 2025}
+\end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {M.Sc. Computer Science (Big Data Analytics)}{}
+      {Central University of Rajasthan}{Kishangarh, India}
+    \resumeSubheading
+      {Integrated B.Sc. B.Ed. (Physics)}{}
+      {Regional Institute of Education (NCERT), Bhubaneswar}{Bhubaneswar, India}
+  \resumeSubHeadingListEnd\vspace{-2pt}
+
+\end{document}
