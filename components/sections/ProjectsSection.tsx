@@ -30,9 +30,9 @@ export default function ProjectsSection() {
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeading
-          label="Open Source"
-          title="Featured Projects"
-          subtitle="Research and personal projects spanning multi-label learning, medical AI, quantum computing, and recommender systems."
+          label="Projects"
+          title="A quick look at how I build with data"
+          subtitle="Selected work across medical AI, modeling, and applied machine learning systems."
         />
 
         <motion.div
@@ -51,14 +51,16 @@ export default function ProjectsSection() {
               variants={cardVariants}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="group relative backdrop-blur-md bg-white/[0.025] border border-white/[0.08] rounded-2xl p-6 flex flex-col hover:bg-white/[0.05] hover:border-white/[0.14] hover:shadow-[0_12px_50px_rgba(6,182,212,0.07)] transition-all duration-300"
+              className="group relative bg-slate-900/70 border border-slate-200/10 rounded-xl p-6 flex flex-col hover:bg-slate-900 hover:border-slate-200/20 transition-all duration-300"
             >
               {/* Top accent */}
               <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-cyan-400 to-violet-400 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
 
               {/* Folder icon + star */}
               <div className="flex items-start justify-between mb-4">
-                <span className="text-3xl">{project.emoji}</span>
+                <span className="inline-flex items-center rounded-md border border-slate-200/15 px-2 py-1 text-[11px] font-semibold tracking-wide text-slate-300">
+                  CASE STUDY
+                </span>
                 <div className="flex items-center gap-1 text-white/38 text-xs">
                   <span>⭐</span>
                   <span>{project.stars}</span>
@@ -70,7 +72,7 @@ export default function ProjectsSection() {
 
               {/* Title */}
               <h3
-                className="font-heading font-bold text-white text-[0.95rem] mb-2 group-hover:text-cyan-300 transition-colors duration-250 leading-snug"
+                className="font-heading font-bold text-white text-[0.95rem] mb-2 group-hover:text-cyan-200 transition-colors duration-200 leading-snug"
                 style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
               >
                 {project.name}
@@ -112,7 +114,7 @@ export default function ProjectsSection() {
             href="https://github.com/Prady029"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/12 text-white/65 hover:text-white hover:bg-white/[0.05] hover:border-white/22 transition-all duration-300 text-sm font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-slate-200/20 text-slate-300 hover:text-white hover:bg-white/5 hover:border-slate-200/30 transition-all duration-300 text-sm font-medium"
           >
             View All Repositories on GitHub
             <span>→</span>

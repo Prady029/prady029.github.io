@@ -18,8 +18,7 @@ export const personalInfo = {
   twitter: "https://www.twitter.com/prady029",
   medium: "https://www.medium.com/@prady029",
   telegram: "https://t.me/prady029",
-  resume:
-    "https://drive.google.com/file/d/1qBkxtyQTbS38w21APuZeWyjm03VUOro0/view",
+  resume: "/Pradyumna_Data_Scientist_5YoE.pdf",
   summary:
     "Impact-driven Data Scientist with 5 years of experience building production-grade AI/ML systems across Medical AI, NLP, Computer Vision, and Generative AI. Proven track record in architecting GraphRAG pipelines, fine-tuning large medical language models, developing voice agents for clinical applications, and leading cross-functional teams.",
 };

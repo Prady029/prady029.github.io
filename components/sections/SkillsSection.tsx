@@ -55,9 +55,9 @@ export default function SkillsSection() {
     <section id="skills" className="relative py-28 px-4 md:px-8 lg:px-16 z-10">
       <div className="max-w-7xl mx-auto">
         <SectionHeading
-          label="Expertise"
-          title="Skills & Technologies"
-          subtitle="A battle-tested toolkit spanning GenAI, Knowledge Graphs, Computer Vision, and production MLOps — built over 5+ years."
+          label="What I work through"
+          title="Capabilities and technical toolkit"
+          subtitle="From market-facing AI applications to production systems, I combine research depth with execution discipline."
         />
 
         <motion.div
@@ -73,11 +73,11 @@ export default function SkillsSection() {
               <motion.div
                 key={group.category}
                 variants={cardVariants}
-                className={`group relative backdrop-blur-md bg-white/[0.025] border border-white/[0.08] rounded-2xl p-6 hover:bg-white/[0.05] hover:border-white/[0.14] transition-all duration-350 ${c.glow}`}
+                className={`group relative bg-slate-900/70 border border-slate-200/10 rounded-xl p-6 hover:bg-slate-900 hover:border-slate-200/20 transition-all duration-300 ${c.glow}`}
               >
                 {/* Top-left accent line */}
                 <div
-                  className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${c.bar} opacity-0 group-hover:opacity-40 transition-opacity duration-350 rounded-full`}
+                  className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${c.bar} opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-full`}
                 />
 
                 {/* Header */}

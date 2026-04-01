@@ -6,35 +6,35 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 const socials = [
   {
-    icon: "🐙",
+    icon: "GH",
     label: "GitHub",
     url: personalInfo.github,
     colorClass:
       "hover:text-white hover:border-white/30 hover:bg-white/[0.06]",
   },
   {
-    icon: "💼",
+    icon: "IN",
     label: "LinkedIn",
     url: personalInfo.linkedin,
     colorClass:
       "hover:text-blue-400 hover:border-blue-400/30 hover:bg-blue-400/[0.05]",
   },
   {
-    icon: "✍️",
+    icon: "MD",
     label: "Medium",
     url: personalInfo.medium,
     colorClass:
       "hover:text-white hover:border-white/30 hover:bg-white/[0.06]",
   },
   {
-    icon: "🐦",
+    icon: "X",
     label: "Twitter",
     url: personalInfo.twitter,
     colorClass:
       "hover:text-sky-400 hover:border-sky-400/30 hover:bg-sky-400/[0.05]",
   },
   {
-    icon: "✈️",
+    icon: "TG",
     label: "Telegram",
     url: personalInfo.telegram,
     colorClass:
@@ -50,9 +50,9 @@ export default function ContactSection() {
     >
       <div className="max-w-3xl mx-auto">
         <SectionHeading
-          label="Let's Connect"
-          title="Get In Touch"
-          subtitle="Open to senior AI/ML roles, GenAI research collaborations, and consulting opportunities."
+          label="Contact"
+          title="If you want me to add value to what you are building, let's talk."
+          subtitle="Available for senior AI roles, consulting engagements, and research-led product collaborations."
         />
 
         {/* Main card */}
@@ -61,7 +61,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55 }}
-          className="relative backdrop-blur-md bg-white/[0.025] border border-white/[0.08] rounded-3xl p-8 md:p-12 text-center mb-8 overflow-hidden"
+          className="relative bg-slate-900/70 border border-slate-200/10 rounded-2xl p-8 md:p-12 text-center mb-8 overflow-hidden"
         >
           {/* Background glow */}
           <div
@@ -99,9 +99,9 @@ export default function ContactSection() {
 
           <a
             href={`mailto:${personalInfo.email}`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:shadow-[0_0_45px_rgba(6,182,212,0.4)] transition-all duration-300 hover:scale-[1.04]"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-md font-medium bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition-colors duration-200"
           >
-            ✉️ Send Me an Email
+            Send me an email
           </a>
         </motion.div>
 
@@ -119,9 +119,11 @@ export default function ContactSection() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/[0.09] text-white/55 text-sm font-medium backdrop-blur-sm bg-white/[0.025] transition-all duration-250 ${social.colorClass}`}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-md border border-slate-200/15 text-slate-300 text-sm font-medium bg-slate-900/70 transition-all duration-250 ${social.colorClass}`}
             >
-              <span>{social.icon}</span>
+              <span className="inline-flex min-w-6 justify-center rounded border border-slate-200/20 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide">
+                {social.icon}
+              </span>
               <span>{social.label}</span>
             </a>
           ))}
@@ -129,9 +131,9 @@ export default function ContactSection() {
             href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-violet-400/25 text-violet-400 text-sm font-medium backdrop-blur-sm bg-violet-400/[0.04] hover:bg-violet-400/[0.09] hover:border-violet-400/45 transition-all duration-250"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-md border border-cyan-400/35 text-cyan-300 text-sm font-medium bg-cyan-400/5 hover:bg-cyan-400/10 transition-all duration-250"
           >
-            <span>📄</span>
+            <span className="inline-flex min-w-6 justify-center rounded border border-cyan-400/30 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide">PDF</span>
             <span>Resume</span>
           </a>
         </motion.div>

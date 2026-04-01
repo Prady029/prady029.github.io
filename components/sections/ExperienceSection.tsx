@@ -30,9 +30,9 @@ export default function ExperienceSection() {
     >
       <div className="max-w-5xl mx-auto">
         <SectionHeading
-          label="Career"
-          title="Work Experience"
-          subtitle="5 years building production AI/ML at scale across GenAI, Medical AI, and Data Science."
+          label="Recent work"
+          title="Places where I helped teams move faster"
+          subtitle="Selected roles where I translated technical complexity into measurable business and product outcomes."
           align="left"
         />
 
@@ -62,7 +62,7 @@ export default function ExperienceSection() {
                 />
 
                 {/* Card */}
-                <div className="backdrop-blur-md bg-white/[0.025] border border-white/[0.08] rounded-2xl p-6 hover:bg-white/[0.05] hover:border-white/[0.13] transition-all duration-300 group">
+                <div className="bg-slate-900/70 border border-slate-200/10 rounded-xl p-6 hover:bg-slate-900 hover:border-slate-200/20 transition-all duration-300 group">
                   {/* Top-left accent stripe */}
                   <div
                     className={`absolute top-0 left-6 right-6 h-px rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
@@ -92,7 +92,7 @@ export default function ExperienceSection() {
                       </span>
                       {role.type === "current" && (
                         <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 bg-cyan-400/10 border border-cyan-400/30 px-2.5 py-1 rounded-full">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                           Current
                         </span>
                       )}
@@ -146,7 +146,7 @@ export default function ExperienceSection() {
             {certifications.map((cert) => (
               <div
                 key={cert.title}
-                className="backdrop-blur-sm bg-white/[0.025] border border-white/[0.07] rounded-xl p-4 hover:border-white/[0.14] hover:bg-white/[0.04] transition-all duration-300"
+                className="bg-slate-900/70 border border-slate-200/10 rounded-xl p-4 hover:border-slate-200/20 transition-all duration-300"
               >
                 <span className="text-xl mb-3 block">{cert.emoji}</span>
                 <p className="text-white text-sm font-semibold leading-snug mb-1">
@@ -177,7 +177,7 @@ export default function ExperienceSection() {
             {education.map((edu) => (
               <div
                 key={edu.degree}
-                className="backdrop-blur-sm bg-white/[0.025] border border-white/[0.07] rounded-xl p-4 hover:border-white/[0.14] hover:bg-white/[0.04] transition-all duration-300"
+                className="bg-slate-900/70 border border-slate-200/10 rounded-xl p-4 hover:border-slate-200/20 transition-all duration-300"
               >
                 <span className="text-xl mb-3 block">{edu.emoji}</span>
                 <p className="text-white text-sm font-semibold leading-snug mb-1">

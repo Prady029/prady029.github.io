@@ -4,39 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo, stats } from "@/data/portfolio";
 
-const floatingBadges = [
-  {
-    label: "GraphRAG",
-    icon: "🕸️",
-    color: "bg-cyan-400/10 border-cyan-400/30 text-cyan-300",
-    position: "top-6 right-8",
-    delay: 0,
-    amplitude: -14,
-  },
-  {
-    label: "LLM Fine-tuning",
-    icon: "🧠",
-    color: "bg-violet-400/10 border-violet-400/30 text-violet-300",
-    position: "bottom-12 right-2",
-    delay: 1.2,
-    amplitude: 12,
-  },
-  {
-    label: "Medical AI",
-    icon: "🏥",
-    color: "bg-rose-400/10 border-rose-400/30 text-rose-300",
-    position: "bottom-24 -left-4",
-    delay: 2,
-    amplitude: -10,
-  },
-  {
-    label: "GenAI",
-    icon: "✨",
-    color: "bg-blue-400/10 border-blue-400/30 text-blue-300",
-    position: "top-16 -left-2",
-    delay: 0.6,
-    amplitude: 10,
-  },
+const capabilityPillars = [
+  "Architect medical-grade AI systems",
+  "Turn research into product direction",
+  "Ship decision-ready analytics",
 ];
 
 export default function HeroSection() {
@@ -52,57 +23,44 @@ export default function HeroSection() {
 
   return (
     <section
-      id="hero"
-      className="relative min-h-screen flex items-center pt-24 pb-16 px-4 md:px-8 lg:px-16 z-10"
+      id="about"
+      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 md:px-8 lg:px-16 z-10"
     >
+      <div id="top" className="absolute -top-28" />
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          {/* ── Left column: text ── */}
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -36 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut" }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
             className="flex flex-col"
           >
-            {/* Available badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/30 bg-cyan-400/[0.08] text-cyan-400 text-sm font-medium w-fit"
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="mb-6 inline-flex items-center gap-2 rounded-md border border-slate-200/15 bg-slate-800/50 px-3 py-1.5 text-sm text-slate-200 w-fit"
             >
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              Open to Senior Roles
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              Open to senior AI and data science roles
             </motion.div>
 
-            {/* Name */}
             <h1
-              className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-3"
+              className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-white"
               style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
             >
-              <span className="text-white/80">Hi, I&apos;m</span>
-              <br />
-              <span className="relative inline-block">
-                <span className="text-cyan-100">Pradyumna</span>
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 inline-block text-gradient-fix bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent"
-                >
-                  Pradyumna
-                </span>
-              </span>
+              Turning complex AI research into decisions teams can move on.
             </h1>
 
-            {/* Animated role */}
-            <div className="h-12 flex items-center mb-5 overflow-hidden">
+            <div className="h-10 flex items-center mt-5 mb-4 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={roleIndex}
-                  initial={{ opacity: 0, y: 18 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.38 }}
-                  className="font-heading text-xl sm:text-2xl font-semibold text-white/70"
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.25 }}
+                  className="font-heading text-lg sm:text-xl font-semibold text-cyan-300"
                   style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
                 >
                   {personalInfo.roles[roleIndex]}
@@ -110,52 +68,58 @@ export default function HeroSection() {
               </AnimatePresence>
             </div>
 
-            {/* Bio */}
-            <p className="text-white/55 text-base md:text-[1.05rem] leading-relaxed mb-9 max-w-xl">
+            <p className="text-slate-300/90 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
               {personalInfo.summary}
             </p>
 
-            {/* CTA buttons */}
+            <div className="grid gap-3 mb-10">
+              {capabilityPillars.map((pillar) => (
+                <div
+                  key={pillar}
+                  className="flex items-start gap-3 text-slate-200"
+                >
+                  <span className="mt-1 h-2 w-2 rounded-full bg-cyan-300" />
+                  <span>{pillar}</span>
+                </div>
+              ))}
+            </div>
+
             <div className="flex flex-wrap gap-3 mb-12">
               <a
                 href="#projects"
-                className="px-7 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:shadow-[0_0_35px_rgba(6,182,212,0.45)] transition-all duration-300 hover:scale-[1.03] text-base md:text-lg"
+                className="px-6 py-3 rounded-md font-medium bg-cyan-500 text-slate-950 hover:bg-cyan-400 transition-colors duration-200"
               >
-                View My Work
+                View recent work
               </a>
               <a
                 href="#contact"
-                className="px-7 py-3.5 rounded-xl font-semibold border border-white/15 text-white/80 hover:text-white hover:bg-white/[0.06] hover:border-white/30 transition-all duration-300 text-base md:text-lg"
+                className="px-6 py-3 rounded-md font-medium border border-slate-200/20 text-slate-200 hover:bg-white/5 transition-colors duration-200"
               >
-                Get In Touch
+                Let&apos;s connect
               </a>
               <a
                 href={personalInfo.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-7 py-3.5 rounded-xl font-semibold border border-violet-400/35 text-violet-400 hover:bg-violet-400/[0.08] hover:border-violet-400/55 transition-all duration-300 text-base md:text-lg"
+                className="px-6 py-3 rounded-md font-medium border border-cyan-400/40 text-cyan-300 hover:bg-cyan-400/10 transition-colors duration-200"
               >
                 Resume ↗
               </a>
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + i * 0.1, duration: 0.45 }}
-                  className="backdrop-blur-sm bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-center hover:border-white/[0.12] transition-colors duration-300"
+                  transition={{ delay: 0.35 + i * 0.08, duration: 0.4 }}
+                  className="bg-slate-900/70 border border-slate-200/10 rounded-lg p-4 text-left"
                 >
-                  <div
-                    className="inline-block text-gradient-fix font-heading text-2xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent"
-                    style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
-                  >
+                  <div className="font-heading text-2xl font-bold text-cyan-300">
                     {stat.value}
                   </div>
-                  <div className="text-white/45 text-[0.7rem] mt-1 leading-tight">
+                  <div className="text-slate-400 text-xs mt-1 leading-tight">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -163,74 +127,39 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* ── Right column: avatar + floating badges ── */}
           <motion.div
-            initial={{ opacity: 0, x: 36 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.15 }}
-            className="flex items-center justify-center relative h-80 lg:h-auto"
+            transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
+            className="flex flex-col gap-5"
           >
-            {/* Outer spinning ring */}
-            <div className="absolute w-80 h-80 rounded-full border border-cyan-400/15 animate-spin-slow" />
-            {/* Inner reverse ring */}
-            <div className="absolute w-64 h-64 rounded-full border border-violet-400/12 animate-spin-reverse-slow" />
+            <div className="rounded-2xl border border-slate-200/10 bg-slate-900/70 p-8">
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-slate-400 mb-3">
+                Strategy, analytics, and market intelligence
+              </p>
+              <h2 className="font-heading text-2xl text-white mb-4">
+                I help teams move from uncertainty to decision-ready execution.
+              </h2>
+              <p className="text-slate-300 leading-relaxed">
+                I work across medical AI, GenAI, and applied data science to build systems that reduce ambiguity, improve trust, and speed up product decisions.
+              </p>
+            </div>
 
-            {/* Glow backdrop */}
-            <div
-              className="absolute w-56 h-56 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%)",
-                filter: "blur(20px)",
-              }}
-            />
-
-            {/* Avatar */}
-            <div className="relative z-10 w-52 h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-2 border-white/20 shadow-[0_0_60px_rgba(6,182,212,0.18)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="rounded-2xl border border-slate-200/10 bg-slate-900/70 p-6 flex items-center gap-4">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden border border-slate-200/20">
               <img
                 src={personalInfo.avatar}
                 alt="Pradyumna Kumar Sahoo"
                 className="w-full h-full object-cover"
               />
+              </div>
+              <div>
+                <p className="text-white font-medium">{personalInfo.name}</p>
+                <p className="text-slate-400 text-sm">{personalInfo.location}</p>
+              </div>
             </div>
-
-            {/* Floating badges */}
-            {floatingBadges.map((badge) => (
-              <motion.div
-                key={badge.label}
-                animate={{ y: [0, badge.amplitude, 0] }}
-                transition={{
-                  duration: 4 + badge.delay,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: badge.delay,
-                }}
-                className={`absolute ${badge.position} backdrop-blur-md ${badge.color} border rounded-full px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap z-20`}
-              >
-                <span>{badge.icon}</span>
-                {badge.label}
-              </motion.div>
-            ))}
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 0.6 }}
-          className="flex flex-col items-center mt-20 gap-2"
-        >
-          <span className="text-white/25 text-[0.65rem] tracking-[0.22em] uppercase">
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
-          />
-        </motion.div>
       </div>
     </section>
   );

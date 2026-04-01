@@ -10,8 +10,8 @@ export default function BlogSection() {
       <div className="max-w-5xl mx-auto">
         <SectionHeading
           label="Writing"
-          title="Latest Articles"
-          subtitle="Deep-dives into ML research, audio source separation, and multilingual NLP."
+          title="Analysis and technical writing"
+          subtitle="Notes on machine learning, applied research, and real-world implementation lessons."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -26,13 +26,12 @@ export default function BlogSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.14 }}
               whileHover={{ y: -6 }}
-              className="group backdrop-blur-md bg-white/[0.025] border border-white/[0.08] rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.14] hover:shadow-[0_12px_50px_rgba(139,92,246,0.09)] transition-all duration-300"
+              className="group bg-slate-900/70 border border-slate-200/10 rounded-xl overflow-hidden hover:bg-slate-900 hover:border-slate-200/20 transition-all duration-300"
             >
               {/* Image / hero area */}
               <div className={`relative h-52 overflow-hidden bg-gradient-to-br ${blog.color}`}>
-                {/* Emoji watermark */}
-                <span className="absolute inset-0 flex items-center justify-center text-8xl opacity-20 select-none">
-                  {blog.emoji}
+                <span className="absolute right-4 top-4 rounded-md border border-white/20 bg-slate-950/50 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-slate-200">
+                  ARTICLE
                 </span>
                 {/* Shimmer accent */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
