@@ -82,8 +82,14 @@ export default function HeroSection() {
             >
               <span className="text-white/80">Hi, I&apos;m</span>
               <br />
-              <span className="inline-block text-gradient-fix bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-                Pradyumna
+              <span className="relative inline-block">
+                <span className="text-cyan-100">Pradyumna</span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 inline-block text-gradient-fix bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent"
+                >
+                  Pradyumna
+                </span>
               </span>
             </h1>
 
