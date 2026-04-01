@@ -119,13 +119,13 @@ export default function HeroSection() {
             <div className="flex flex-wrap gap-3 mb-12">
               <a
                 href="#projects"
-                className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:shadow-[0_0_35px_rgba(6,182,212,0.45)] transition-all duration-300 hover:scale-[1.03] text-sm"
+                className="px-7 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:shadow-[0_0_35px_rgba(6,182,212,0.45)] transition-all duration-300 hover:scale-[1.03] text-base md:text-lg"
               >
                 View My Work
               </a>
               <a
                 href="#contact"
-                className="px-6 py-3 rounded-xl font-semibold border border-white/15 text-white/80 hover:text-white hover:bg-white/[0.06] hover:border-white/30 transition-all duration-300 text-sm"
+                className="px-7 py-3.5 rounded-xl font-semibold border border-white/15 text-white/80 hover:text-white hover:bg-white/[0.06] hover:border-white/30 transition-all duration-300 text-base md:text-lg"
               >
                 Get In Touch
               </a>
@@ -133,7 +133,7 @@ export default function HeroSection() {
                 href={personalInfo.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl font-semibold border border-violet-400/35 text-violet-400 hover:bg-violet-400/[0.08] hover:border-violet-400/55 transition-all duration-300 text-sm"
+                className="px-7 py-3.5 rounded-xl font-semibold border border-violet-400/35 text-violet-400 hover:bg-violet-400/[0.08] hover:border-violet-400/55 transition-all duration-300 text-base md:text-lg"
               >
                 Resume ↗
               </a>
