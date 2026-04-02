@@ -222,7 +222,9 @@ export const education = [
   },
 ];
 
-export consAlgorithm Development: Multi-label Classification Enhancement",
+export const projects = [
+  {
+    name: "Algorithm Development: Multi-label Classification Enhancement",
     description:
       "Improving multi-label classification by generating synthetic data for rare labels using MLSMOTE technique at TCS Big Data Lab, Rajasthan. Addressed the tail-labels problem where classifiers struggle with underrepresented labels.",
     language: "Python",
@@ -310,9 +312,7 @@ export consAlgorithm Development: Multi-label Classification Enhancement",
   {
     name: "My-first-quantum-code",
     description:
-      "Quantum computing experiments using Qiskit — exploring quantum circuit simulations and entanglement phenomena
-    description:
-      "Quantum computing experiments using Qiskit — exploring quantum circuit simulations and entanglement.",
+      "Quantum computing experiments using Qiskit — exploring quantum circuit simulations and entanglement phenomena.",
     language: "Python",
     stars: 1,
     url: "https://github.com/Prady029/My-first-quantum-code",
