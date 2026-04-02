@@ -39,21 +39,28 @@ export default function Background() {
 
       {/* Subtle dot grid */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 dark:opacity-40 opacity-20"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            "radial-gradient(circle, rgba(100,116,139,0.15) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
-          opacity: 0.4,
         }}
       />
 
-      {/* Vignette */}
+      {/* Vignette — dark mode */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 dark:block hidden"
         style={{
           background:
             "radial-gradient(ellipse at center, transparent 40%, rgba(3,7,18,0.7) 100%)",
+        }}
+      />
+      {/* Vignette — light mode */}
+      <div
+        className="absolute inset-0 dark:hidden block"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(240,246,255,0.7) 100%)",
         }}
       />
     </div>

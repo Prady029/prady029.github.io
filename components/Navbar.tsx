@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { personalInfo } from "@/data/portfolio";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -16,6 +17,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -34,14 +36,14 @@ export default function Navbar() {
         <div
           className={`flex items-center gap-1 rounded-full px-3 py-2 transition-all duration-500 ${
             scrolled
-              ? "backdrop-blur-2xl bg-white/[0.06] border border-white/[0.14] shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-              : "backdrop-blur-md bg-white/[0.03] border border-white/[0.07]"
+              ? "backdrop-blur-2xl dark:bg-white/[0.06] bg-black/[0.06] border dark:border-white/[0.14] border-black/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.2)]"
+              : "backdrop-blur-md dark:bg-white/[0.03] bg-black/[0.03] border dark:border-white/[0.07] border-black/[0.07]"
           }`}
         >
           {/* Logo */}
           <a
             href="#hero"
-            className="font-heading font-bold text-white mr-4 text-lg px-2 py-1 hover:text-cyan-400 transition-colors duration-200"
+              className="font-heading font-bold dark:text-white text-slate-900 mr-4 text-lg px-2 py-1 hover:text-cyan-400 transition-colors duration-200"
           >
             PK<span className="text-cyan-400">.</span>
           </a>
@@ -52,12 +54,21 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3 py-1.5 rounded-full text-sm text-white/65 hover:text-white hover:bg-white/[0.08] transition-all duration-200 font-medium"
+                className="px-3 py-1.5 rounded-full text-sm dark:text-white/65 text-slate-600 hover:dark:text-white hover:text-slate-900 dark:hover:bg-white/[0.08] hover:bg-black/[0.06] transition-all duration-200 font-medium"
               >
                 {link.label}
               </a>
             ))}
           </div>
+
+          {/* Theme toggle */}
+          <button
+            aria-label="Toggle theme"
+            onClick={toggle}
+            className="hidden md:flex ml-1 p-2 rounded-full dark:text-white/70 text-slate-600 hover:dark:text-white hover:text-slate-900 dark:hover:bg-white/[0.08] hover:bg-black/[0.06] transition-all duration-200 text-base"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
 
           {/* Resume CTA */}
           <a
@@ -69,10 +80,19 @@ export default function Navbar() {
             Resume ↗
           </a>
 
+          {/* Mobile theme toggle */}
+          <button
+            aria-label="Toggle theme"
+            onClick={toggle}
+            className="md:hidden p-2 dark:text-white/70 text-slate-600 hover:dark:text-white hover:text-slate-900 transition-colors text-base"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+
           {/* Mobile hamburger */}
           <button
             aria-label="Toggle menu"
-            className="md:hidden ml-2 p-2 text-white/70 hover:text-white transition-colors"
+            className="md:hidden ml-1 p-2 dark:text-white/70 text-slate-600 hover:dark:text-white hover:text-slate-900 transition-colors"
             onClick={() => setMenuOpen((v) => !v)}
           >
             <span className="text-lg leading-none">{menuOpen ? "✕" : "☰"}</span>
@@ -88,14 +108,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -16, scale: 0.96 }}
             transition={{ duration: 0.22 }}
-            className="fixed top-20 left-4 right-4 z-40 rounded-2xl backdrop-blur-2xl bg-white/[0.07] border border-white/[0.12] shadow-[0_8px_40px_rgba(0,0,0,0.6)] p-4 flex flex-col gap-1 md:hidden"
+            className="fixed top-20 left-4 right-4 z-40 rounded-2xl backdrop-blur-2xl dark:bg-white/[0.07] bg-white/80 border dark:border-white/[0.12] border-black/[0.10] shadow-[0_8px_40px_rgba(0,0,0,0.15)] p-4 flex flex-col gap-1 md:hidden"
           >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-2.5 rounded-xl text-white/80 hover:text-white hover:bg-white/[0.08] transition-all duration-200 font-medium text-sm"
+                className="px-4 py-2.5 rounded-xl dark:text-white/80 text-slate-700 hover:dark:text-white hover:text-slate-900 dark:hover:bg-white/[0.08] hover:bg-black/[0.05] transition-all duration-200 font-medium text-sm"
               >
                 {link.label}
               </a>

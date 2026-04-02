@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Pradyumna Kumar Sahoo | Senior Data Scientist",
@@ -59,10 +60,11 @@ export default function RootLayout({
         <link rel="icon" href="/avatar.jpg" type="image/jpeg" />
       </head>
       <body
-        className="font-sans text-white antialiased"
-        style={{ backgroundColor: "#030712" }}
+        className="font-sans antialiased bg-[#030712] dark:bg-[#030712] text-slate-900 dark:text-white transition-colors duration-300"
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
