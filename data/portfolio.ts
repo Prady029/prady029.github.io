@@ -176,6 +176,33 @@ export const certifications = [
     date: "Feb 2025",
     emoji: "🧠",
   },
+  {
+    title: "TensorFlow Developer Certificate",
+    issuer: "Coursera",
+    date: "2023",
+    url: "https://coursera.org/share/93c991f5a903e8735a8d973b1aae4b96",
+    emoji: "🔧",
+  },
+  {
+    title: "Deep Learning Specialization",
+    issuer: "Coursera",
+    date: "2022",
+    url: "https://www.coursera.org/account/accomplishments/specialization/certificate/R3ZCXXTTVHS8",
+    emoji: "🧠",
+  },
+  {
+    title: "An Introduction To Practical Deep Learning",
+    issuer: "Intel - Coursera",
+    date: "2022",
+    url: "https://www.coursera.org/account/accomplishments/certificate/QB93WVQLDNL3",
+    emoji: "✨",
+  },
+  {
+    title: "Technical Support Fundamentals",
+    issuer: "Google - Coursera",
+    date: "2021",
+    emoji: "💬",
+  },
 ];
 
 export const education = [
@@ -183,41 +210,77 @@ export const education = [
     degree: "M.Sc. Computer Science (Big Data Analytics)",
     institution: "Central University of Rajasthan",
     location: "Kishangarh, India",
+    period: "July 2018 – July 2020",
     emoji: "🎓",
   },
   {
-    degree: "Integrated B.Sc. B.Ed. (Physics)",
+    degree: "Integrated B.Sc. B.Ed. (Physical Sciences and Education)",
     institution: "Regional Institute of Education (NCERT), Bhubaneswar",
     location: "Bhubaneswar, India",
+    period: "July 2014 – May 2018",
     emoji: "⚛️",
   },
 ];
 
-export const projects = [
+export consAlgorithm Development: Multi-label Classification Enhancement",
+    description:
+      "Improving multi-label classification by generating synthetic data for rare labels using MLSMOTE technique at TCS Big Data Lab, Rajasthan. Addressed the tail-labels problem where classifiers struggle with underrepresented labels.",
+    language: "Python",
+    stars: 8,
+    tags: ["Multi-label", "Data Augmentation", "TCS Big Data Lab", "Deep Learning"],
+    emoji: "🏷️",
+  },
   {
     name: "LLSF_DL-MLSMOTE-Hybrid",
     description:
-      "Hybrid deep learning approach combining Label-Specific Feature learning with MLSMOTE for multi-label classification tasks.",
+      "Hybrid deep learning approach combining Label-Specific Feature learning with MLSMOTE for multi-label classification. Implements the LLSF-DL algorithm for improved classification performance on imbalanced datasets.",
     language: "MATLAB",
     stars: 6,
     url: "https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid",
     tags: ["Multi-label", "Deep Learning", "SMOTE"],
-    emoji: "🏷️",
+    emoji: "🧬",
   },
   {
     name: "LLSF-Learning-Label-Specific-Features",
     description:
-      "Implementation of the Label-Specific Feature learning algorithm for robust multi-label classification systems.",
+      "Implementation of the Learning Label-Specific Features (LLSF) algorithm for multi-label classification. Enables feature selection by ranking features according to their relevance to each label.",
     language: "Jupyter Notebook",
     stars: 4,
     url: "https://github.com/Prady029/LLSF-Learning-Label-Specific-Features",
-    tags: ["Multi-label", "Feature Learning"],
+    tags: ["Multi-label", "Feature Learning", "Classification"],
     emoji: "🔬",
+  },
+  {
+    name: "Session-based Recommendation with Graph Neural Networks",
+    description:
+      "Graph Neural Network-based recommendation system for session-based learning. Captures essential features from graph structures to recommend items during ongoing sessions.",
+    language: "Python",
+    stars: 5,
+    tags: ["GNN", "Recommender System", "Graph Learning"],
+    emoji: "🕸️",
+  },
+  {
+    name: "Electricity Price Prediction using ELM-PSO-ARIMA",
+    description:
+      "Hybrid model combining Extreme Learning Machine, Particle Swarm Optimization, and ARIMA to capture frequent changes in electricity prices with improved accuracy.",
+    language: "Python",
+    stars: 4,
+    tags: ["Time Series", "Optimization", "ELM", "Energy"],
+    emoji: "⚡",
+  },
+  {
+    name: "SVM-kNN-PSO Ensemble for Intrusion Detection",
+    description:
+      "Novel ensemble method combining Support Vector Machines, k-Nearest Neighbors, and Particle Swarm Optimization for robust intrusion detection system.",
+    language: "Python",
+    stars: 5,
+    tags: ["Security", "Ensemble Learning", "PSO", "IDS"],
+    emoji: "🛡️",
   },
   {
     name: "Brain-Tumor-Segmentation",
     description:
-      "Deep learning brain tumor segmentation from MRI scans using U-Net architecture with attention mechanisms.",
+      "Deep learning brain tumor segmentation from MRI scans using U-Net architecture with attention mechanisms for improved medical imaging analysis.",
     language: "Python",
     stars: 3,
     url: "https://github.com/Prady029/Brain-tumor-Segmentation",
@@ -227,7 +290,7 @@ export const projects = [
   {
     name: "MLSMOTE",
     description:
-      "Multi-Label Synthetic Minority Over-sampling Technique for handling class imbalance in multi-label datasets.",
+      "Multi-Label Synthetic Minority Over-sampling Technique for handling class imbalance in multi-label datasets. Generates synthetic samples for minority labels.",
     language: "Python",
     stars: 3,
     url: "https://github.com/Prady029/MLSMOTE",
@@ -237,15 +300,17 @@ export const projects = [
   {
     name: "Rule-based-Recommender-system",
     description:
-      "Rule-based recommendation engine using association rules and collaborative filtering techniques.",
+      "Rule-based recommendation engine using association rules and collaborative filtering techniques with NLP for personalized recommendations.",
     language: "Python",
     stars: 2,
     url: "https://github.com/Prady029/Rule-based-Recommender-system",
-    tags: ["Recommender System", "NLP"],
+    tags: ["Recommender System", "NLP", "Association Rules"],
     emoji: "🎯",
   },
   {
     name: "My-first-quantum-code",
+    description:
+      "Quantum computing experiments using Qiskit — exploring quantum circuit simulations and entanglement phenomena
     description:
       "Quantum computing experiments using Qiskit — exploring quantum circuit simulations and entanglement.",
     language: "Python",
