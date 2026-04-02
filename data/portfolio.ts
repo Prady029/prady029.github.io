@@ -256,23 +256,67 @@ export const projects = [
   },
 ];
 
-export const blogs = [
-  {
-    url_title: "Kraoke-my-way",
-    title: "Karaoke My Way..",
-    sub_title:
-      "Extracting Vocals And Instrumentals From Music The Deep Learning Way",
-    top_image: "top_image.jpeg",
-    emoji: "🎵",
-    color: "from-violet-500/20 to-cyan-500/20",
-  },
-  {
-    url_title: "Dont-gift-me-dictionaries-now",
-    title: "Don't Gift Me Dictionaries Now..",
-    sub_title:
-      "Microsoft Speller100: A Spell-Checker For Over 100 Languages",
-    top_image: "top_image.jpeg",
-    emoji: "📖",
-    color: "from-cyan-500/20 to-blue-500/20",
-  },
+const blogSource = [
+  { slug: "salesforce-uses-aws-textract-for-intelligent-document-automation", title: "Salesforce Uses AWS Textract For Intelligent Document Automation", url: "https://analyticsdrift.com/salesforce-uses-aws-textract-for-intelligent-document-automation/" },
+  { slug: "extracting-vocals-and-instrumentals-from-music-the-deep-learning-way", title: "Extracting Vocals And Instrumentals From Music The Deep Learning Way", url: "https://analyticsdrift.com/extracting-vocals-and-instrumentals-from-music-the-deep-learning-way/" },
+  { slug: "microsoft-speller100-a-spell-checker-for-over-100-languages", title: "Microsoft Speller100: A Spell-Checker For Over 100 Languages", url: "https://analyticsdrift.com/microsoft-speller100-a-spell-checker-for-over-100-languages/" },
+  { slug: "a-deep-dive-into-ibm-quantum-roadmap", title: "A Deep Dive Into IBM Quantum Roadmap", url: "https://analyticsdrift.com/a-deep-dive-into-ibm-quantum-roadmap/" },
+  { slug: "iit-kanpur-offers-free-8-weeks-computational-science-course-enrollments-ends-15th-feb", title: "IIT Kanpur Offers Free 8-Weeks Computational Science Course, Enrollments Ends 15th Feb", url: "https://analyticsdrift.com/iit-kanpur-offers-free-8-weeks-computational-science-course-enrollments-ends-15th-feb/" },
+  { slug: "dealing-with-racially-biased-hate-speech-detection-models", title: "Dealing With Racially-Biased Hate-Speech Detection Models", url: "https://analyticsdrift.com/dealing-with-racially-biased-hate-speech-detection-models/" },
+  { slug: "automl-made-easy-with-symbolic-programming-using-pyglove", title: "AutoML Made Easy With Symbolic Programming using Pyglove", url: "https://analyticsdrift.com/automl-made-easy-with-symbolic-programming-using-pyglove/" },
+  { slug: "microsoft-introduces-viva-to-help-people-work-from-home", title: "Microsoft Introduces VIVA To Help People Work From Home", url: "https://analyticsdrift.com/microsoft-introduces-viva-to-help-people-work-from-home/" },
+  { slug: "linguistic-analysis-of-machine-translations", title: "Measuring Weirdness In AI-Based Language-Translations", url: "https://analyticsdrift.com/linguistic-analysis-of-machine-translations/" },
+  { slug: "google-interpretable-ranking-gams", title: "Google Introduces Interpretable Ranking Via Generative Additive Models", url: "https://analyticsdrift.com/google-interpretable-ranking-gams/" },
+  { slug: "microsofts-gooseberry-treat-for-quantum-computing", title: "Microsoft's Gooseberry Treat For Quantum Computing", url: "https://analyticsdrift.com/microsofts-gooseberry-treat-for-quantum-computing/" },
+  { slug: "the-facebook-muppet-show", title: "The Facebook MUPPET Show", url: "https://analyticsdrift.com/the-facebook-muppet-show/" },
+  { slug: "data-labeling-and-the-hidden-costs-in-machine-learning", title: "Data Labeling And The Hidden Costs In Machine Learning", url: "https://analyticsdrift.com/data-labeling-and-the-hidden-costs-in-machine-learning/" },
+  { slug: "what-is-liquid-machine-learning", title: "What Is Liquid Machine Learning?", url: "https://analyticsdrift.com/what-is-liquid-machine-learning/" },
+  { slug: "facebooks-single-model-xlsr-for-speech-recognition-in-53-languages", title: "Facebook's Single Model XLSR For Speech Recognition In 53 Languages.", url: "https://analyticsdrift.com/facebooks-single-model-xlsr-for-speech-recognition-in-53-languages/" },
+  { slug: "the-statistics-ministry-adopts-ai-for-faster-economic-insights", title: "The Statistics Ministry Adopts AI For Faster Economic Insights", url: "https://analyticsdrift.com/the-statistics-ministry-adopts-ai-for-faster-economic-insights/" },
+  { slug: "ibm-and-daimler-simulates-materials-with-fewer-qubits", title: "IBM And Daimler Simulates Materials With Fewer Qubits", url: "https://analyticsdrift.com/ibm-and-daimler-simulates-materials-with-fewer-qubits/" },
+  { slug: "brain-storage-scheme-can-solve-artificial-networks-memory-woes", title: "Brain Storage Scheme Can Solve Artificial Networks' Memory Woes", url: "https://analyticsdrift.com/brain-storage-scheme-can-solve-artificial-networks-memory-woes/" },
+  { slug: "microsofts-felicia-a-new-mechanism-to-deal-with-private-medical-data", title: "Microsoft's FELICIA - A New Mechanism To Deal With Private Medical Data", url: "https://analyticsdrift.com/microsofts-felicia-a-new-mechanism-to-deal-with-private-medical-data/" },
+  { slug: "bert-based-language-models-are-deep-n-gram-models", title: "BERT-Based Language Models Are Deep N-Gram Models", url: "https://analyticsdrift.com/bert-based-language-models-are-deep-n-gram-models/" },
+  { slug: "infosys-cobalt-announces-applied-ai-cloud-built-on-nvidia-dgx-a100s", title: "Infosys Cobalt Announces Applied AI Cloud Built On NVIDIA DGX A100s", url: "https://analyticsdrift.com/infosys-cobalt-announces-applied-ai-cloud-built-on-nvidia-dgx-a100s/" },
+  { slug: "meity-and-aws-sets-up-quantum-computing-application-lab", title: "MeITY And AWS Sets Up Quantum Computing Application Lab", url: "https://analyticsdrift.com/meity-and-aws-sets-up-quantum-computing-application-lab/" },
+  { slug: "automated-vehicles-safety-standards-relaxed-by-the-us-government", title: "Automated Vehicles' Safety Standards Relaxed By The US Government", url: "https://analyticsdrift.com/automated-vehicles-safety-standards-relaxed-by-the-us-government/" },
+  { slug: "nasa-uses-ai-to-detect-martian-craters", title: "NASA Uses AI to Detect Martian Craters", url: "https://analyticsdrift.com/nasa-uses-ai-to-detect-martian-craters/" },
+  { slug: "cure-fit-goes-global-acquires-us-based-onyx", title: "Cure.Fit Goes Global, Acquires US-Based Onyx", url: "https://analyticsdrift.com/cure-fit-goes-global-acquires-us-based-onyx/" },
+  { slug: "fractal-acquires-zerogons-for-its-drag-drop-enterprise-ai-platform", title: "Fractal Acquires Zerogons For Its Drag Drop Enterprise AI Platform.", url: "https://analyticsdrift.com/fractal-acquires-zerogons-for-its-drag-drop-enterprise-ai-platform/" },
+  { slug: "concept-whitening-for-interpreting-neural-networks-at-ease", title: "Concept-Whitening For Interpreting Neural Networks At Ease", url: "https://analyticsdrift.com/concept-whitening-for-interpreting-neural-networks-at-ease/" },
+  { slug: "googles-trillion-parameters-nlp-model", title: "Google's Trillion-Parameters NLP Model", url: "https://analyticsdrift.com/googles-trillion-parameters-nlp-model/" },
+  { slug: "vonenets-computer-vision-meets-primate-vision", title: "VOneNets - Computer Vision meets Primate Vision", url: "https://analyticsdrift.com/vonenets-computer-vision-meets-primate-vision/" },
+  { slug: "av-map-from-short-video-to-the-entire-floor-plan-using-ml", title: "AV-MAP: From Short Video To The Entire Floor Plan Using ML", url: "https://analyticsdrift.com/av-map-from-short-video-to-the-entire-floor-plan-using-ml/" },
+  { slug: "amazon-web-services-aws-is-hosting-a-free-ai-conclave", title: "Amazon Web Services (AWS) Is Hosting A Free AI Conclave", url: "https://analyticsdrift.com/amazon-web-services-aws-is-hosting-a-free-ai-conclave/" },
+  { slug: "microsoft-is-hosting-free-virtual-workshop-on-reinforcement-learning-day-providing-job-opportunity-at-its-research-labs", title: "Microsoft Is Hosting Free Virtual Workshop On Reinforcement Learning Day, Providing Job Opportunity At Its Research Labs", url: "https://analyticsdrift.com/microsoft-is-hosting-free-virtual-workshop-on-reinforcement-learning-day-providing-job-opportunity-at-its-research-labs/" },
+  { slug: "optical-chips-paves-the-way-for-faster-machine-learning", title: "Optical Chips Paves The Way For Faster Machine Learning", url: "https://analyticsdrift.com/optical-chips-paves-the-way-for-faster-machine-learning/" },
+  { slug: "microsofts-deberta-surpasses-humans-on-natural-language-understanding", title: "Microsoft's DeBERTa Surpasses Humans On Natural Language Understanding", url: "https://analyticsdrift.com/microsofts-deberta-surpasses-humans-on-natural-language-understanding/" },
+  { slug: "uber-ai-says-you-can-increase-task-completion-if-you-are-polite-with-virtual-agents", title: "Uber AI Says You Can Increase Task Completion If You Are Polite With Virtual Agents", url: "https://analyticsdrift.com/uber-ai-says-you-can-increase-task-completion-if-you-are-polite-with-virtual-agents/" },
+  { slug: "iisc-invites-for-its-new-deep-learning-specialisation", title: "IIsc Invites For Its New Deep Learning Specialisation", url: "https://analyticsdrift.com/iisc-invites-for-its-new-deep-learning-specialisation/" },
+  { slug: "facebook-releases-code-of-its-state-of-the-art-voice-separation-model", title: "Facebook Releases Code Of Its State-Of-The-Art Voice Separation Model", url: "https://analyticsdrift.com/facebook-releases-code-of-its-state-of-the-art-voice-separation-model/" },
+  { slug: "intels-realsense-id-now-offers-facial-recognition-with-higher-accuracy", title: "Intel's RealSense ID Now Offers Facial Recognition With Higher Accuracy", url: "https://analyticsdrift.com/intels-realsense-id-now-offers-facial-recognition-with-higher-accuracy/" },
+  { slug: "openais-dall%c2%b7e-can-create-images-from-text", title: "OpenAI's DALL-E Can Create Images From Text", url: "https://analyticsdrift.com/openais-dall%c2%b7e-can-create-images-from-text/" },
+  { slug: "clip-from-openai-recognizes-images-from-their-captions", title: "CLIP From OpenAI Recognizes Images From Their Captions", url: "https://analyticsdrift.com/clip-from-openai-recognizes-images-from-their-captions/" },
+  { slug: "computer-vision-has-a-new-deit-by-facebook", title: "Computer Vision Has A New DeIT By Facebook", url: "https://analyticsdrift.com/computer-vision-has-a-new-deit-by-facebook/" },
+  { slug: "openmined-in-collaboration-with-pytorch-introduces-a-free-course-of-its-the-privacy-ai-series", title: "OpenMined, In Collaboration With PyTorch, Introduces A Free Course Of The Privacy AI Series", url: "https://analyticsdrift.com/openmined-in-collaboration-with-pytorch-introduces-a-free-course-of-its-the-privacy-ai-series/" },
 ];
+
+const blogEmojis = ["🧠", "📊", "⚙️", "🎵", "🔬", "🗞️", "⚛️", "💡"];
+const blogGradients = [
+  "from-violet-500/20 to-cyan-500/20",
+  "from-cyan-500/20 to-blue-500/20",
+  "from-blue-500/20 to-emerald-500/20",
+  "from-emerald-500/20 to-teal-500/20",
+  "from-teal-500/20 to-sky-500/20",
+  "from-sky-500/20 to-violet-500/20",
+];
+
+export const blogs = blogSource.map((post, i) => ({
+  url_title: post.slug,
+  title: post.title,
+  sub_title: "Read the full article on Analytics Drift.",
+  external_url: post.url,
+  top_image: "top_image.jpeg",
+  emoji: blogEmojis[i % blogEmojis.length],
+  color: blogGradients[i % blogGradients.length],
+}));

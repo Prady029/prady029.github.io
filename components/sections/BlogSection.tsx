@@ -1,10 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { blogs } from "@/data/portfolio";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function BlogSection() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const collapsedCount = 6;
+  const visibleBlogs = isExpanded ? blogs : blogs.slice(0, collapsedCount);
+
   return (
     <section id="blog" className="relative py-28 px-4 md:px-8 lg:px-16 z-10">
       <div className="max-w-5xl mx-auto">
@@ -15,10 +20,10 @@ export default function BlogSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {blogs.map((blog, i) => (
+          {visibleBlogs.map((blog, i) => (
             <motion.a
               key={blog.url_title}
-              href={`./blog/${blog.url_title}/`}
+              href={blog.external_url ?? `./blog/${blog.url_title}/`}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 28 }}
@@ -69,6 +74,20 @@ export default function BlogSection() {
             </motion.a>
           ))}
         </div>
+
+        {blogs.length > collapsedCount ? (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setIsExpanded((prev) => !prev)}
+              className="px-5 py-2.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-sm font-semibold hover:bg-white/[0.08] hover:border-white/25 transition-all"
+            >
+              {isExpanded
+                ? "Show fewer articles"
+                : `Show all ${blogs.length} articles`}
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   );
