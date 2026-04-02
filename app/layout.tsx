@@ -61,13 +61,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
-        <link
-          rel="icon"
-          href="https://avatars.githubusercontent.com/u/40775401?v=4"
-          type="image/png"
-        />
+        {/* Preconnect to external origins used on this page */}
+        <link rel="preconnect" href="https://analyticsdrift.com" />
+        <link rel="preconnect" href="https://avatars.githubusercontent.com" crossOrigin="anonymous" />
+        <link rel="icon" href="/avatar.jpg" type="image/jpeg" />
       </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans text-white antialiased`}

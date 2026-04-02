@@ -29,7 +29,7 @@ export default function BlogSection() {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.14 }}
+              transition={{ duration: 0.4, delay: Math.min(i * 0.08, 0.5) }}
               whileHover={{ y: -6 }}
               className="group backdrop-blur-md bg-white/[0.025] border border-white/[0.08] rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.14] hover:shadow-[0_12px_50px_rgba(139,92,246,0.09)] transition-all duration-300"
             >
