@@ -35,10 +35,18 @@ export default function BlogSection() {
             >
               {/* Image / hero area */}
               <div className={`relative h-52 overflow-hidden bg-gradient-to-br ${blog.color}`}>
-                {/* Emoji watermark */}
-                <span className="absolute inset-0 flex items-center justify-center text-8xl opacity-20 select-none">
-                  {blog.emoji}
-                </span>
+                {blog.image_url ? (
+                  <img
+                    src={blog.image_url}
+                    alt={blog.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="absolute inset-0 flex items-center justify-center text-8xl opacity-20 select-none">
+                    {blog.emoji}
+                  </span>
+                )}
                 {/* Shimmer accent */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 {/* Bottom fade */}
@@ -48,12 +56,6 @@ export default function BlogSection() {
                     background: "linear-gradient(to top, rgba(3,7,18,0.9), transparent)",
                   }}
                 />
-                {/* Category chip */}
-                <div className="absolute top-4 left-4">
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm bg-white/[0.1] border border-white/[0.15] text-white/80">
-                    ML · Deep Learning
-                  </span>
-                </div>
               </div>
 
               {/* Text content */}
@@ -64,12 +66,12 @@ export default function BlogSection() {
                 >
                   {blog.title}
                 </h3>
-                <p className="text-white/52 text-sm leading-relaxed mb-4">
-                  {blog.sub_title}
+                <p className="text-white/60 text-sm leading-relaxed mb-4">
+                  {blog.sub_title}{" "}
+                  <strong className="font-semibold text-violet-400 group-hover:text-violet-300 transition-colors">
+                    Read the full article →
+                  </strong>
                 </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-400 group-hover:gap-2.5 transition-all duration-200">
-                  Read Article →
-                </span>
               </div>
             </motion.a>
           ))}
