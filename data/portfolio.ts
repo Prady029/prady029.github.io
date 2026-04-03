@@ -2,9 +2,9 @@ export const personalInfo = {
   name: "Pradyumna Kumar Sahoo",
   username: "Prady029",
   roles: [
-    "Senior Data Scientist",
-    "GenAI Engineer",
-    "GraphRAG Architect",
+    "Data Scientist",
+    "AI Engineer",
+    "ML Architect",
     "Medical AI Specialist",
     "LLM Fine-tuner",
   ],
@@ -24,10 +24,9 @@ export const personalInfo = {
 };
 
 export const stats = [
-  { value: "5+", label: "Years Experience" },
-  { value: "15+", label: "Projects Built" },
+  { value: "5", label: "Years Experience" },
+  { value: "16+", label: "Projects Built" },
   { value: "2", label: "IIT Collaborations" },
-  { value: "3", label: "Companies" },
 ];
 
 export const skills = [
@@ -140,7 +139,7 @@ export const skills = [
 
 export const experience = [
   {
-    title: "Senior Data Scientist",
+    title: "Data Scientist",
     company: "Mondee Pvt. Ltd.",
     location: "Hyderabad, India",
     period: "August 2025 – Present",
@@ -252,100 +251,84 @@ export const education = [
 
 export const projects = [
   {
-    name: "Algorithm Development: Multi-label Classification Enhancement",
+    name: "LLSF: Learning Label-Specific Features",
     description:
-      "Improving multi-label classification by generating synthetic data for rare labels using MLSMOTE technique at TCS Big Data Lab, Rajasthan. Addressed the tail-labels problem where classifiers struggle with underrepresented labels.",
+      "Research paper implementation from scratch for improving multi-label classification on imbalanced datasets using the Label-Specific Feature learning (LLSF) algorithm.",
     language: "Python",
-    stars: 8,
-    tags: ["Multi-label", "Data Augmentation", "TCS Big Data Lab", "Deep Learning"],
-    emoji: "🏷️",
-  },
-  {
-    name: "LLSF_DL-MLSMOTE-Hybrid",
-    description:
-      "Hybrid deep learning approach combining Label-Specific Feature learning with MLSMOTE for multi-label classification. Implements the LLSF-DL algorithm for improved classification performance on imbalanced datasets.",
-    language: "MATLAB",
-    stars: 6,
-    url: "https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid",
-    tags: ["Multi-label", "Deep Learning", "SMOTE"],
-    emoji: "🧬",
-  },
-  {
-    name: "LLSF-Learning-Label-Specific-Features",
-    description:
-      "Implementation of the Learning Label-Specific Features (LLSF) algorithm for multi-label classification. Enables feature selection by ranking features according to their relevance to each label.",
-    language: "Jupyter Notebook",
-    stars: 4,
-    url: "https://github.com/Prady029/LLSF-Learning-Label-Specific-Features",
-    tags: ["Multi-label", "Feature Learning", "Classification"],
+    stars: 12,
+    url: "https://github.com/Prady029/LLSF-Learning-Label-Specific-Features-for-Multi-Label-Classifcation",
+    tags: ["Multi-label", "Feature Learning", "Class Imbalance", "Research"],
     emoji: "🔬",
   },
   {
-    name: "Session-based Recommendation with Graph Neural Networks",
+    name: "LLSF-DL MLSMOTE Hybrid for Tail Labels",
     description:
-      "Graph Neural Network-based recommendation system for session-based learning. Captures essential features from graph structures to recommend items during ongoing sessions.",
+      "Masters' thesis — hybrid deep learning approach combining Label-Specific Feature learning with MLSMOTE to address the tail-labels problem in multi-label classification.",
     language: "Python",
-    stars: 5,
-    tags: ["GNN", "Recommender System", "Graph Learning"],
-    emoji: "🕸️",
+    stars: 9,
+    url: "https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels",
+    tags: ["Multi-label", "Deep Learning", "SMOTE", "Thesis"],
+    emoji: "🧬",
   },
   {
-    name: "Electricity Price Prediction using ELM-PSO-ARIMA",
+    name: "LIFT: Multi-Label Learning with Label-Specific Features",
     description:
-      "Hybrid model combining Extreme Learning Machine, Particle Swarm Optimization, and ARIMA to capture frequent changes in electricity prices with improved accuracy.",
+      "Research paper implementation of the LIFT algorithm — learns label-specific feature transformations to improve multi-label classification performance.",
+    language: "Python",
+    stars: 6,
+    url: "https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features",
+    tags: ["Multi-label", "Feature Learning", "Classification"],
+    emoji: "🏋️",
+  },
+  {
+    name: "NCERT AI Teacher Assistant",
+    description:
+      "AI-powered assistant for teachers that automatically creates lesson plans, drafts question sets, and supports classroom preparation workflows.",
     language: "Python",
     stars: 4,
-    tags: ["Time Series", "Optimization", "ELM", "Energy"],
-    emoji: "⚡",
+    url: "https://github.com/Prady029/NCERT-AI-Teacher-Assistant",
+    tags: ["GenAI", "Education AI", "LLM", "Agentic"],
+    emoji: "📚",
   },
   {
-    name: "SVM-kNN-PSO Ensemble for Intrusion Detection",
+    name: "Multi-label Datasets",
     description:
-      "Novel ensemble method combining Support Vector Machines, k-Nearest Neighbors, and Particle Swarm Optimization for robust intrusion detection system.",
-    language: "Python",
-    stars: 5,
-    tags: ["Security", "Ensemble Learning", "PSO", "IDS"],
-    emoji: "🛡️",
-  },
-  {
-    name: "Brain-Tumor-Segmentation",
-    description:
-      "Deep learning brain tumor segmentation from MRI scans using U-Net architecture with attention mechanisms for improved medical imaging analysis.",
-    language: "Python",
-    stars: 3,
-    url: "https://github.com/Prady029/Brain-tumor-Segmentation",
-    tags: ["Medical AI", "Segmentation", "U-Net"],
-    emoji: "🏥",
-  },
-  {
-    name: "MLSMOTE",
-    description:
-      "Multi-Label Synthetic Minority Over-sampling Technique for handling class imbalance in multi-label datasets. Generates synthetic samples for minority labels.",
-    language: "Python",
-    stars: 3,
-    url: "https://github.com/Prady029/MLSMOTE",
-    tags: ["Data Augmentation", "Class Imbalance"],
-    emoji: "⚖️",
-  },
-  {
-    name: "Rule-based-Recommender-system",
-    description:
-      "Rule-based recommendation engine using association rules and collaborative filtering techniques with NLP for personalized recommendations.",
-    language: "Python",
-    stars: 2,
-    url: "https://github.com/Prady029/Rule-based-Recommender-system",
-    tags: ["Recommender System", "NLP", "Association Rules"],
-    emoji: "🎯",
-  },
-  {
-    name: "My-first-quantum-code",
-    description:
-      "Quantum computing experiments using Qiskit — exploring quantum circuit simulations and entanglement phenomena.",
+      "Curated collection of multi-label classification benchmarks used across research experiments on label imbalance, feature learning, and SMOTE-based augmentation.",
     language: "Python",
     stars: 1,
-    url: "https://github.com/Prady029/My-first-quantum-code",
-    tags: ["Quantum Computing", "Qiskit"],
-    emoji: "⚛️",
+    url: "https://github.com/Prady029/Multillabel-Datasets",
+    tags: ["Dataset", "Multi-label", "Research"],
+    emoji: "📊",
+  },
+  {
+    name: "Fuzzy Computing Programs",
+    description:
+      "Implementations of fuzzy sets, fuzzy logic inference systems, and fuzzy control applications from the Fuzzy Computing course at CURAJ.",
+    language: "Jupyter Notebook",
+    stars: 1,
+    url: "https://github.com/Prady029/Fuzzy_programs",
+    tags: ["Fuzzy Logic", "Control Systems", "Academic"],
+    emoji: "🔀",
+  },
+  {
+    name: "Early Days of Machine Learning",
+    description:
+      "A collection of ML algorithm implementations from 2018 — supervised learning, unsupervised learning, and regression techniques built from first principles.",
+    language: "Jupyter Notebook",
+    stars: 1,
+    url: "https://github.com/Prady029/My-early-days-of-machine-learning",
+    tags: ["Machine Learning", "Scikit-learn", "Foundations"],
+    emoji: "🌱",
+  },
+  {
+    name: "DSA 101",
+    description:
+      "Ongoing journey through Data Structures and Algorithms — curated problem sets, solutions, and notes in Python.",
+    language: "Python",
+    stars: 0,
+    url: "https://github.com/Prady029/DSA_101",
+    tags: ["DSA", "Python", "Problem Solving"],
+    emoji: "🧩",
   },
 ];
 
