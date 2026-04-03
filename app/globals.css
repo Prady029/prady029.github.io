@@ -90,14 +90,109 @@
     border-color: rgba(0, 0, 0, 0.1) !important;
   }
 
+  /* Light mode: coloured badge borders — use the remapped dark text colour so borders are legible */
+  html:not(.dark) [class*="border-cyan-"],
+  html:not(.dark) [class*="border-violet-"],
+  html:not(.dark) [class*="border-blue-"],
+  html:not(.dark) [class*="border-rose-"],
+  html:not(.dark) [class*="border-green-"],
+  html:not(.dark) [class*="border-orange-"],
+  html:not(.dark) [class*="border-purple-"],
+  html:not(.dark) [class*="border-amber-"],
+  html:not(.dark) [class*="border-pink-"],
+  html:not(.dark) [class*="border-teal-"],
+  html:not(.dark) [class*="border-yellow-"],
+  html:not(.dark) [class*="border-indigo-"],
+  html:not(.dark) [class*="border-sky-"],
+  html:not(.dark) [class*="border-red-"] {
+    border-color: currentColor !important;
+  }
+
+  /* Light mode: badge/chip background opacity variants — replace near-invisible tints
+     with subtle solid fills. Only targets classes that include "/" (opacity variants),
+     e.g. bg-cyan-400/10, bg-cyan-400/[0.09] — NOT solid bg-cyan-400 elements. */
+  html:not(.dark) [class*="bg-cyan-4/"], html:not(.dark) [class*="bg-cyan-5/"] { background-color: #cffafe !important; }
+  html:not(.dark) [class*="bg-violet-4/"], html:not(.dark) [class*="bg-violet-5/"] { background-color: #ede9fe !important; }
+  html:not(.dark) [class*="bg-blue-4/"], html:not(.dark) [class*="bg-blue-5/"] { background-color: #dbeafe !important; }
+  html:not(.dark) [class*="bg-rose-4/"], html:not(.dark) [class*="bg-rose-5/"] { background-color: #ffe4e6 !important; }
+  html:not(.dark) [class*="bg-green-4/"], html:not(.dark) [class*="bg-green-5/"] { background-color: #dcfce7 !important; }
+  html:not(.dark) [class*="bg-orange-4/"], html:not(.dark) [class*="bg-orange-5/"] { background-color: #ffedd5 !important; }
+  html:not(.dark) [class*="bg-purple-4/"], html:not(.dark) [class*="bg-purple-5/"] { background-color: #f3e8ff !important; }
+  html:not(.dark) [class*="bg-amber-4/"], html:not(.dark) [class*="bg-amber-5/"] { background-color: #fef3c7 !important; }
+  html:not(.dark) [class*="bg-pink-4/"], html:not(.dark) [class*="bg-pink-5/"] { background-color: #fce7f3 !important; }
+  html:not(.dark) [class*="bg-teal-4/"], html:not(.dark) [class*="bg-teal-5/"] { background-color: #ccfbf1 !important; }
+  html:not(.dark) [class*="bg-yellow-4/"], html:not(.dark) [class*="bg-yellow-5/"] { background-color: #fef9c3 !important; }
+  html:not(.dark) [class*="bg-indigo-4/"], html:not(.dark) [class*="bg-indigo-5/"] { background-color: #e0e7ff !important; }
+  html:not(.dark) [class*="bg-sky-4/"], html:not(.dark) [class*="bg-sky-5/"] { background-color: #e0f2fe !important; }
+  html:not(.dark) [class*="bg-red-4/"], html:not(.dark) [class*="bg-red-5/"] { background-color: #fee2e2 !important; }
+  /* bracket notation: bg-cyan-400/[0.09] etc. */
+  html:not(.dark) [class*="bg-cyan-4/["], html:not(.dark) [class*="bg-cyan-5/["] { background-color: #cffafe !important; }
+  html:not(.dark) [class*="bg-violet-4/["], html:not(.dark) [class*="bg-violet-5/["] { background-color: #ede9fe !important; }
+  html:not(.dark) [class*="bg-blue-4/["], html:not(.dark) [class*="bg-blue-5/["] { background-color: #dbeafe !important; }
+  html:not(.dark) [class*="bg-rose-4/["] { background-color: #ffe4e6 !important; }
+  html:not(.dark) [class*="bg-green-4/["] { background-color: #dcfce7 !important; }
+  html:not(.dark) [class*="bg-orange-4/["] { background-color: #ffedd5 !important; }
+  html:not(.dark) [class*="bg-purple-4/["] { background-color: #f3e8ff !important; }
+  html:not(.dark) [class*="bg-amber-4/["] { background-color: #fef3c7 !important; }
+  html:not(.dark) [class*="bg-pink-4/["] { background-color: #fce7f3 !important; }
+  html:not(.dark) [class*="bg-teal-4/["] { background-color: #ccfbf1 !important; }
+  html:not(.dark) [class*="bg-yellow-4/["] { background-color: #fef9c3 !important; }
+  html:not(.dark) [class*="bg-indigo-4/["] { background-color: #e0e7ff !important; }
+  html:not(.dark) [class*="bg-sky-4/["] { background-color: #e0f2fe !important; }
+  html:not(.dark) [class*="bg-red-4/["] { background-color: #fee2e2 !important; }
+
   /* Light mode scrollbar */
   html:not(.dark) ::-webkit-scrollbar-track { background: #e2e8f0; }
 
-  /* Light mode section number / decorative text */
-  html:not(.dark) [class*="text-cyan-"],
-  html:not(.dark) [class*="text-violet-"],
-  html:not(.dark) [class*="text-blue-"] {
-    /* keep accent colours — do nothing, they're already visible */
+  /*
+   * Light mode: remap pastel -300 and semi-transparent -400 text colours
+   * to WCAG AA-compliant -600/-700 equivalents so they're readable on
+   * the white/light-blue card backgrounds.
+   *
+   * NOTE: bg-clip-text (gradient text) is excluded by the earlier rule
+   * so gradient headings are intentionally left untouched.
+   */
+  html:not(.dark) [class*="text-cyan-"]:not([class*="bg-clip-text"]) {
+    color: #0e7490 !important; /* cyan-700 */
+  }
+  html:not(.dark) [class*="text-violet-"]:not([class*="bg-clip-text"]) {
+    color: #6d28d9 !important; /* violet-700 */
+  }
+  html:not(.dark) [class*="text-blue-"]:not([class*="bg-clip-text"]) {
+    color: #1d4ed8 !important; /* blue-700 */
+  }
+  html:not(.dark) [class*="text-rose-"]:not([class*="bg-clip-text"]) {
+    color: #be123c !important; /* rose-700 */
+  }
+  html:not(.dark) [class*="text-green-"]:not([class*="bg-clip-text"]) {
+    color: #15803d !important; /* green-700 */
+  }
+  html:not(.dark) [class*="text-orange-"]:not([class*="bg-clip-text"]) {
+    color: #c2410c !important; /* orange-700 */
+  }
+  html:not(.dark) [class*="text-purple-"]:not([class*="bg-clip-text"]) {
+    color: #7e22ce !important; /* purple-700 */
+  }
+  html:not(.dark) [class*="text-amber-"]:not([class*="bg-clip-text"]) {
+    color: #b45309 !important; /* amber-700 */
+  }
+  html:not(.dark) [class*="text-pink-"]:not([class*="bg-clip-text"]) {
+    color: #be185d !important; /* pink-700 */
+  }
+  html:not(.dark) [class*="text-teal-"]:not([class*="bg-clip-text"]) {
+    color: #0f766e !important; /* teal-700 */
+  }
+  html:not(.dark) [class*="text-yellow-"]:not([class*="bg-clip-text"]) {
+    color: #a16207 !important; /* yellow-700 */
+  }
+  html:not(.dark) [class*="text-indigo-"]:not([class*="bg-clip-text"]) {
+    color: #4338ca !important; /* indigo-700 */
+  }
+  html:not(.dark) [class*="text-sky-"]:not([class*="bg-clip-text"]) {
+    color: #0369a1 !important; /* sky-700 */
+  }
+  html:not(.dark) [class*="text-red-"]:not([class*="bg-clip-text"]) {
+    color: #b91c1c !important; /* red-700 */
   }
 
   ::selection {

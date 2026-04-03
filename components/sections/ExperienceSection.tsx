@@ -5,20 +5,29 @@ import { experience, certifications, education } from "@/data/portfolio";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const tagPalette: Record<string, string> = {
-  GraphRAG: "bg-cyan-400/10 text-cyan-300 border-cyan-400/20",
-  "Medical AI": "bg-rose-400/10 text-rose-300 border-rose-400/20",
+  // Mondee
+  "Medical GraphRAG": "bg-cyan-400/10 text-cyan-300 border-cyan-400/20",
+  "Clinical NLP": "bg-rose-400/10 text-rose-300 border-rose-400/20",
   "LLM Fine-tuning": "bg-violet-400/10 text-violet-300 border-violet-400/20",
-  ASR: "bg-blue-400/10 text-blue-300 border-blue-400/20",
-  "Knowledge Graphs": "bg-green-400/10 text-green-300 border-green-400/20",
+  "Voice AI": "bg-blue-400/10 text-blue-300 border-blue-400/20",
+  "Medgemma-27b": "bg-teal-400/10 text-teal-300 border-teal-400/20",
+  MCP: "bg-indigo-400/10 text-indigo-300 border-indigo-400/20",
+  // ADP
   "AWS Neptune": "bg-orange-400/10 text-orange-300 border-orange-400/20",
   LangGraph: "bg-purple-400/10 text-purple-300 border-purple-400/20",
   "Process Mining": "bg-amber-400/10 text-amber-300 border-amber-400/20",
   "Agentic AI": "bg-pink-400/10 text-pink-300 border-pink-400/20",
+  "Finance AI": "bg-green-400/10 text-green-300 border-green-400/20",
+  YOLOv8: "bg-yellow-400/10 text-yellow-300 border-yellow-400/20",
+  "Indic NLP": "bg-sky-400/10 text-sky-300 border-sky-400/20",
+  // Claim Genius
   Detectron2: "bg-teal-400/10 text-teal-300 border-teal-400/20",
   FastAPI: "bg-green-400/10 text-green-300 border-green-400/20",
   "GradCAM++": "bg-yellow-400/10 text-yellow-300 border-yellow-400/20",
   GAN: "bg-indigo-400/10 text-indigo-300 border-indigo-400/20",
-  "Computer Vision": "bg-blue-400/10 text-blue-300 border-blue-400/20",
+  "Instance Segmentation": "bg-blue-400/10 text-blue-300 border-blue-400/20",
+  MLflow: "bg-orange-400/10 text-orange-300 border-orange-400/20",
+  XGBoost: "bg-rose-400/10 text-rose-300 border-rose-400/20",
 };
 const defaultTag = "bg-white/[0.06] text-white/55 border-white/15";
 
