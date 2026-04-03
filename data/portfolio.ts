@@ -18,7 +18,7 @@ export const personalInfo = {
   twitter: "https://www.twitter.com/prady029",
   medium: "https://www.medium.com/@prady029",
   telegram: "https://t.me/prady029",
-  resume: "/Pradyumna_Data_Scientist_5YoE.pdf",
+  resume: "/Pradyumna_Data_Scientist_AI_ML_5YoE.pdf",
   summary:
     "Impact-driven Data Scientist with close to 5 years of experience building production-grade AI/ML systems across Medical and Finance domain for Computer Vision, Audio and Generative AI use-cases. Proven track record in architecting real-time audio chatbot systems, Knowledge-graph based GraphRAG pipelines, fine-tuning large language models, developing multimodal agents and leading cross-functional teams. Seeking a Senior Data Scientist role to drive AI innovation at scale.",
 };
