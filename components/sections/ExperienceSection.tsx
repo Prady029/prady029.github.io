@@ -152,19 +152,51 @@ export default function ExperienceSection() {
             Certifications
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {certifications.map((cert) => (
-              <div
-                key={cert.title}
-                className="backdrop-blur-sm bg-white/[0.025] border border-white/[0.07] rounded-xl p-4 hover:border-white/[0.14] hover:bg-white/[0.04] transition-all duration-300"
-              >
-                <span className="text-xl mb-3 block">{cert.emoji}</span>
-                <p className="text-white text-sm font-semibold leading-snug mb-1">
-                  {cert.title}
-                </p>
-                <p className="text-cyan-400/80 text-xs">{cert.issuer}</p>
-                <p className="text-white/35 text-xs mt-1">{cert.date}</p>
-              </div>
-            ))}
+            {certifications.map((cert) => {
+              const inner = (
+                <>
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <span className="text-xl">{cert.emoji}</span>
+                    {cert.url && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-3.5 h-3.5 text-cyan-400/60 shrink-0 mt-0.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 3h7m0 0v7m0-7L10 14M5 5H3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-2" />
+                      </svg>
+                    )}
+                  </div>
+                  <p className="text-white text-sm font-semibold leading-snug mb-1">
+                    {cert.title}
+                  </p>
+                  <p className="text-cyan-400/80 text-xs">{cert.issuer}</p>
+                  <p className="text-white/35 text-xs mt-1">{cert.date}</p>
+                </>
+              );
+
+              return cert.url ? (
+                <a
+                  key={cert.title}
+                  href={cert.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="backdrop-blur-sm bg-white/[0.025] border border-white/[0.07] rounded-xl p-4 hover:border-cyan-400/30 hover:bg-white/[0.04] hover:shadow-[0_4px_24px_rgba(6,182,212,0.08)] transition-all duration-300 block cursor-pointer"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div
+                  key={cert.title}
+                  className="backdrop-blur-sm bg-white/[0.025] border border-white/[0.07] rounded-xl p-4 hover:border-white/[0.14] hover:bg-white/[0.04] transition-all duration-300"
+                >
+                  {inner}
+                </div>
+              );
+            })}
           </div>
         </motion.div>
 
