@@ -1,5 +1,21 @@
 const got = require("got");
 
+function normalizeGithubUsername(username) {
+  if (typeof username !== "string") {
+    throw new Error("Invalid GitHub username");
+  }
+
+  const normalized = username.trim();
+  // GitHub usernames: 1-39 chars, alnum or single hyphen, no leading/trailing hyphen, no consecutive hyphens
+  const githubUsernamePattern = /^(?!-)(?!.*--)[A-Za-z0-9-]{1,39}(?<!-)$/;
+
+  if (!githubUsernamePattern.test(normalized)) {
+    throw new Error("Invalid GitHub username");
+  }
+
+  return normalized;
+}
+
 /**
  * The defaults here are the same as the API
  * @see https://developer.github.com/v3/repos/#list-user-repositories
@@ -14,6 +30,7 @@ async function getRepos(username, opts = {}) {
   let tempRepos;
   let page = 1;
   let repos = [];
+  const safeUsername = encodeURIComponent(normalizeGithubUsername(username));
 
   const sort = opts.sort;
   const limit = opts.limit|| (Number.isNaN(opts.limit) ? Infinity : limit);
@@ -31,7 +48,7 @@ async function getRepos(username, opts = {}) {
   }
 
   do {
-    let requestUrl = `https://api.github.com/users/${username}/repos?per_page=100&page=${page++}&type=${type}`;
+    let requestUrl = `https://api.github.com/users/${safeUsername}/repos?per_page=100&page=${page++}&type=${type}`;
     if (sort && sort !== "star") {
       requestUrl += `&sort=${sort}&direction=${order}`;
     }
@@ -60,7 +77,8 @@ async function getRepos(username, opts = {}) {
  * @param {string} username
  */
 async function getUser(username) {
-  const res = await got(`https://api.github.com/users/${username}`);
+  const safeUsername = encodeURIComponent(normalizeGithubUsername(username));
+  const res = await got(`https://api.github.com/users/${safeUsername}`);
   return JSON.parse(res.body);
 }
 
