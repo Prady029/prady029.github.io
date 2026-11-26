@@ -23,7 +23,7 @@ Pradyumna Kumar Sahoo is an Applied Data Scientist with 5+ years of experience b
 
 ## Professional Experience
 
-### Data Scientist — Mondee Pvt. Ltd. (Aug 2025 – Present · Hyderabad, India)
+### Applied Data Scientist — Pranik.ai (Mondee) (Aug 2025 – Present · Hyderabad, India)
 - Clinical Decision Support (GraphRAG): Architected a GraphRAG audio chatbot enabling clinicians across Surekha Hospital Chain and BhaktiVedant Hospital to query alternative diagnoses and treatment paths; extracted structured medical entities (NER) into Neo4j and integrated retrieval via LangChain to eliminate unsupported answers through traceable source attribution.
 - Medication Safety Agent (MCP): Developed an autonomous medication-safety agent integrated into the clinical chat interface; queried live RxNorm and PubMed data to detect drug–drug interactions, formulated patient-specific dosage regimens, and deployed the tool as an MCP service accessible to internal agent fleets.
 - Clinical LLM Fine-Tuning & Serving: Coordinated with researchers from IIT Madras and IIT Hyderabad on dataset curation, training, and evaluation to fine-tune MedGemma-27b-text-it using Unsloth; served the model via vLLM for high-throughput clinical NLP inference.
