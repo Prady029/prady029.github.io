@@ -9,7 +9,7 @@ export default function SkillsSection() {
       className="py-8 sm:py-10"
     >
       <SectionHeading
-        index="03"
+        index="02"
         headingId="skills-heading"
         title="Technical Stack"
         subtitle="Core frameworks, serving runtimes, knowledge graph tooling, and MLOps infrastructure used in production."
