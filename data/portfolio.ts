@@ -402,6 +402,8 @@ export interface BlogItem {
   tags: string[];
   mediumUrl?: string;
   repoUrl?: string;
+  /** Site-relative 1200x630 image for link previews (Open Graph, X, LinkedIn). */
+  coverImage?: string;
   contentHtml: string;
 }
 
