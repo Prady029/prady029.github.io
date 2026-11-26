@@ -22,6 +22,10 @@ export async function generateMetadata({
   if (!post) return {};
 
   const canonicalPath = `/blog/${post.slug}/`;
+  // Without per-post images, link previews fall back to the site-wide card (name + avatar).
+  const previewImages = post.coverImage
+    ? [{ url: post.coverImage, width: 1200, height: 630, alt: post.title }]
+    : [{ url: personalInfo.avatar, alt: personalInfo.name }];
   return {
     title: `${post.title} — ${personalInfo.name}`,
     description: post.subTitle,
@@ -37,6 +41,13 @@ export async function generateMetadata({
       publishedTime: post.publishedAt,
       authors: [personalInfo.name],
       tags: post.tags,
+      images: previewImages,
+    },
+    twitter: {
+      card: post.coverImage ? "summary_large_image" : "summary",
+      title: post.title,
+      description: post.subTitle,
+      images: previewImages.map((i) => i.url),
     },
   };
 }
