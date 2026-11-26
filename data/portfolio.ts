@@ -408,137 +408,209 @@ export const blogs: BlogItem[] = [
     slug: "llsf-dl-mlsmote-hybrid-feynman-guide",
     title: "Solving Tail Labels with LLSF-DL + MLSMOTE: A Feynman Guide",
     subTitle:
-      "My Master’s thesis explained from first principles — how combining neighborhood synthetic oversampling (MLSMOTE) with joint feature-and-label learning (LLSF-DL) rescues rare labels in multi-label classification.",
+      "A technical deep dive into my Master’s thesis — combining imbalance-aware MLSMOTE synthetic neighborhood generation with joint feature-and-label optimization (LLSF-DL) to recover rare tail labels.",
     kind: "Paper Deep Dive",
     publishedAt: "2026-11-26",
     publishedLabel: "Nov 26, 2026",
-    readingTime: "6 min read",
+    readingTime: "10 min read",
     tags: ["multi-label", "tail-labels", "mlsmote", "llsf-dl", "thesis"],
     repoUrl: "https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels",
-    contentHtml: `<p>If you want to know whether you truly understand a machine learning paper, try explaining it without hiding behind matrix Greek letters. Here is the central idea behind my 2020 Master’s thesis—implemented in both MATLAB and Python—using the Feynman technique.</p>
+    contentHtml: `<p>Richard Feynman’s rule for understanding anything technical was simple: if you cannot trace an equation back to the physical difficulty it was invented to solve, you only memorized the notation. My 2020 Master’s thesis—implemented in both MATLAB and Python—tackles one of the stubbornest failure modes in supervised learning: <strong>tail-label collapse in multi-label classification</strong>. Here is both the intuition and the exact mathematics behind how the hybrid pipeline works.</p>
 
-<h3>1. The Everyday Puzzle: Why Rare Labels Get Ignored</h3>
-<p>In single-label classification, every example gets exactly one answer: <em>cat</em> or <em>dog</em>. In <strong>multi-label classification</strong>, one item can wear many badges at once. A news story might be tagged <code>economy</code>, <code>asia</code>, and <code>maritime-trade</code>; a medical record might carry <code>hypertension</code> alongside a rare genetic condition.</p>
-<p>Almost every real multi-label dataset is lopsided. A handful of popular <strong>head labels</strong> appear thousands of times, while dozens of <strong>tail labels</strong> show up only a few times. If a classifier simply guesses “no” on every rare tail label, its overall accuracy still looks fantastic—yet it fails completely on the unusual cases that matter most.</p>
-
-<h3>2. Why Neither Half Alone Fixes the Problem</h3>
-<p>Suppose you try two popular ideas separately:</p>
+<h3>1. Formal Problem: Why Multi-Label Imbalance Is Not Single-Label Imbalance</h3>
+<p>In standard multi-label learning, each training example <code>x<sub>i</sub> ∈ ℝ<sup>d</sup></code> is paired with a binary vector <code>y<sub>i</sub> ∈ {0, 1}<sup>L</sup></code> across <code>L</code> possible labels, forming feature matrix <code>X ∈ ℝ<sup>n × d</sup></code> and label matrix <code>Y ∈ {0, 1}<sup>n × L</sup></code>.</p>
+<p>Unlike single-label problems where each example belongs to exactly one bucket, labels in real corpora (such as <code>rcv1</code> news categories or <code>genbase</code> protein families) follow a steep power-law distribution:</p>
 <ul>
-  <li><strong>Idea A — Just copy or oversample rare examples:</strong> Standard oversampling (like basic SMOTE) was built for single-label problems. In a multi-label dataset, an example carrying a rare label <em>also</em> carries common labels. Copy or interpolate blindly and you break the natural co-occurrence pattern between labels.</li>
-  <li><strong>Idea B — Use a smart multi-label classifier (LLSF-DL):</strong> <em>Label-Specific Learning with Specific Features and Class-Dependent Labels</em> (Huang et al., IEEE TKDE 2016) is clever because it learns both which input clues matter for each label (<code>W_x</code>) and how labels lean on each other (<code>W_y</code>). Still, if a tail label only has three positive examples in training, even a smart joint optimizer is flying blind.</li>
+  <li><strong>Head labels</strong> appear in thousands of samples and dominate gradient updates.</li>
+  <li><strong>Tail labels</strong> appear in only a tiny fraction of samples—yet carry high semantic specificity.</li>
+</ul>
+<p>If a model predicts <code>0</code> everywhere on a rare tail label, overall <strong>Hamming Loss</strong> (fraction of wrong <code>(sample, label)</code> entries) and <strong>Micro-F1</strong> barely flinch. That is why evaluating tail-label behavior requires label-sensitive and ranking-sensitive metrics such as <strong>Macro-F1</strong>, <strong>Ranking Loss</strong>, <strong>One-Error</strong>, <strong>Coverage</strong>, and <strong>Average Precision</strong> (all 15 metrics implemented in <code>MultiLabelEvaluator</code>).</p>
+
+<h4>Quantifying "Tailness" with Imbalance Ratios</h4>
+<p>Before fixing imbalance, we have to measure it per label. Across the thesis codebase, two complementary definitions are used:</p>
+<ul>
+  <li>In the MATLAB thesis scripts (<code>src/Imbalance_ratio.m</code>), following Charte et al. (2015), <strong>IRLbl</strong> compares the frequency of the most common label against label <code>j</code>: <code>IRLbl(j) = max<sub>k</sub>(∑<sub>i</sub> Y<sub>ik</sub>) / (ε + ∑<sub>i</sub> Y<sub>ij</sub>)</code>, with <code>MeanIR = (1/L) ∑<sub>j</sub> IRLbl(j)</code> flagging tail labels whose ratio exceeds the dataset mean.</li>
+  <li>In the modular Python implementation (<code>compute_imbalance_ratio</code> in <code>utils/evaluation.py</code>), per-label imbalance is computed directly as <code>IR(j) = negative_count(j) / positive_count(j)</code>, and <code>identify_tail_labels(Y, threshold)</code> selects every label with <code>IR(j) ≥ tail_threshold</code>.</li>
 </ul>
 
-<blockquote><strong>The central thesis idea:</strong> First detect which labels are starving, synthesize realistic multi-label neighbors <em>only around those tail labels</em> using MLSMOTE, and then retrain LLSF-DL on the repaired dataset so both label-specific features and label dependencies can learn cleanly.</blockquote>
+<blockquote><strong>The core dilemma:</strong> Oversampling alone without structured feature/label learning injects noisy synthetic points; structured classifiers like LLSF-DL alone still starve when a tail label has only a handful of positive observations.</blockquote>
 
-<h3>3. How the Hybrid Pipeline Works Step by Step</h3>
-<p>In <a href="https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels/blob/master/python_src/hybrid_approach.py" target="_blank" rel="noopener noreferrer"><code>hybrid_approach.py</code></a> (and the original MATLAB driver <code>evaluate_llsf_mlsmote.m</code>), the pipeline runs in three clean stages:</p>
-
-<h4>Step 1: Spot the starving labels</h4>
-<p>We measure the <strong>imbalance ratio</strong> of every label column in <code>Y</code> (<code>compute_imbalance_ratio</code>). Any label whose ratio exceeds <code>tail_threshold</code> is flagged into <code>self.tail_labels</code>. Popular head labels are left untouched so we do not bloat or distort the majority distribution.</p>
-
-<h4>Step 2: Grow realistic neighbors with MLSMOTE</h4>
-<p>For each flagged tail label, <a href="https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels/blob/master/python_src/algorithms/mlsmote.py" target="_blank" rel="noopener noreferrer"><code>MLSMOTE</code></a> gathers all positive instances into a minority bag and builds a new synthetic point in two moves:</p>
+<h3>2. Stage One: In-Situ Data Repair via MLSMOTE (Charte et al., 2015)</h3>
+<p>Why can’t you just run ordinary SMOTE on each rare label independently? Because in multi-label data, an instance carrying a rare label <code>l</code> <em>also</em> carries several other labels simultaneously. If you synthesize a new feature vector <code>x<sub>syn</sub></code> and blindly set only <code>y<sub>syn,l</sub> = 1</code> (or copy <code>y<sub>i</sub></code> verbatim), you corrupt the joint distribution <code>P(Y | X)</code>.</p>
+<p>In <a href="https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels/blob/master/python_src/algorithms/mlsmote.py" target="_blank" rel="noopener noreferrer"><code>algorithms/mlsmote.py</code></a>, <code>MLSMOTE.fit_resample(X, Y, label_idx, n_samples)</code> solves this in four concrete steps:</p>
 <ol>
-  <li><strong>New features:</strong> Pick a minority point and one of its <code>k</code> nearest neighbors, then place a new point somewhere on the straight line between them: <code>current + rand() * (neighbor - current)</code>.</li>
-  <li><strong>New label set (the crucial trick):</strong> Instead of setting only the target tail label to <code>1</code>, look at all labels across the point and its <code>k</code> neighbors and assign every label by <strong>majority vote</strong> (<code>label_counts &gt; (len(neighbors) + 1) / 2</code>). That preserves real label combinations.</li>
+  <li><strong>Build the minority bag:</strong> Concatenate features and labels into <code>D = [X, Y]</code> and extract all rows where <code>Y[:, label_idx] == 1</code> into <code>min_bag</code>.</li>
+  <li><strong>Measure joint proximity:</strong> For each seed instance <code>x<sub>i</sub></code> in <code>min_bag</code>, compute pairwise Euclidean distances via <code>cdist</code> to every other sample in <code>min_bag</code> and take its <code>k</code> nearest neighbors (default <code>k = 5</code>).</li>
+  <li><strong>Interpolate features linearly:</strong> Randomly select one neighbor <code>x<sub>nbr</sub></code> from those <code>k</code> neighbors and generate a synthetic feature vector along the segment between them:
+    <pre>x<sub>syn</sub> = x<sub>i</sub> + u · (x<sub>nbr</sub> − x<sub>i</sub>),    u ~ Uniform(0, 1)</pre>
+  </li>
+  <li><strong>Synthesize the full label vector by majority vote:</strong> Sum the binary label vectors of the seed instance and all <code>k</code> neighbors (<code>label_counts = y_i + ∑<sub>r=1..k</sub> y<sub>nbr,r</sub></code>), then assign every label <code>j ∈ {1..L}</code> using strict majority voting:
+    <pre>y<sub>syn,j</sub> = 1  if  label_counts[j] &gt; (k + 1) / 2  else  0</pre>
+  </li>
 </ol>
+<p>Notice what that majority vote achieves: co-occurring labels that genuinely characterize the neighborhood survive onto <code>y<sub>syn</sub></code>, while accidental one-off labels on a single neighbor get filtered out. In <a href="https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels/blob/master/python_src/hybrid_approach.py" target="_blank" rel="noopener noreferrer"><code>hybrid_approach.py</code></a> (<code>method="minority"</code>), MLSMOTE is invoked <em>only</em> for labels in <code>self.tail_labels</code>, generating <code>a = 5</code> synthetic samples per minority instance and stacking <code>[X, X<sub>syn</sub>]</code> and <code>[Y, Y<sub>syn</sub>]</code>.</p>
 
-<h4>Step 3: Jointly learn features and label links with LLSF-DL</h4>
-<p>Now we stack the original data and synthetic tail-label samples (<code>X_augmented</code>, <code>Y_augmented</code>) and fit <a href="https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels/blob/master/python_src/algorithms/llsf_dl.py" target="_blank" rel="noopener noreferrer"><code>LLSF_DL</code></a>. During gradient descent, soft-thresholding shrinks tiny weights in both <code>W_x</code> (label-specific features) and <code>W_y</code> (class-dependent label correlations) to zero, leaving a sparse, interpretable model that finally has enough evidence to recognize rare tail labels.</p>
+<h3>3. Stage Two: Joint Feature &amp; Label Learning with LLSF-DL (Huang et al., TKDE 2016)</h3>
+<p>Once <code>[X<sub>aug</sub>, Y<sub>aug</sub>]</code> has repaired coverage on tail labels, we train <code>LLSF_DL</code> (<a href="https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels/blob/master/python_src/algorithms/llsf_dl.py" target="_blank" rel="noopener noreferrer"><code>algorithms/llsf_dl.py</code></a>). Why <strong>LLSF-DL</strong> instead of plain LLSF? Standard LLSF assumes each label only depends on its own sparse subset of input features <code>W<sub>x</sub></code>. LLSF-DL goes a step further: it models <strong>class-dependent labels</strong> via a second matrix <code>W<sub>y</sub> ∈ ℝ<sup>L × L</sup></code> capturing direct label-to-label dependencies.</p>
 
-<pre>fit(X, Y):
-  1. tail_labels = identify_tail_labels(Y, threshold)
-  2. for label in tail_labels:
-       X_syn, Y_syn = MLSMOTE(k=5).fit_resample(X, Y, label)
-  3. X_aug, Y_aug = vstack(X, X_syn), vstack(Y, Y_syn)
-  4. LLSF_DL.fit(X_aug, Y_aug)  # learns sparse W_x and W_y</pre>
-
-<h3>4. Takeaways &amp; Trade-offs</h3>
+<h4>The Objective Function</h4>
+<p>In <code>LLSF_DL._compute_loss</code>, the optimizer minimizes the sum of seven intuitive terms:</p>
+<pre>min<sub>W<sub>x</sub>, W<sub>y</sub></sub>  (θ<sub>x</sub>²/2) ||X W<sub>x</sub> − Y||²<sub>F</sub>
+          + (θ<sub>y</sub>²/2) ||Y<sub>pred</sub> W<sub>y</sub> − Y||²<sub>F</sub>
+          + (α/2) tr(R W<sub>x</sub><sup>T</sup> W<sub>x</sub>)
+          + β ||W<sub>x</sub>||₁ + γ ||W<sub>y</sub>||₁
+          + (ρ/2) (||W<sub>x</sub>||²<sub>F</sub> + ||W<sub>y</sub>||²<sub>F</sub>)</pre>
 <ul>
-  <li><strong>Why it works:</strong> Oversampling repairs the data geometry for rare classes; LLSF-DL turns that repaired geometry into compact per-label features and label dependencies.</li>
-  <li><strong>What to watch out for:</strong> If a tail label has only a single positive example, nearest-neighbor interpolation cannot invent variety (the implementation falls back safely to copying that instance). Tuning <code>tail_threshold</code> and <code>k</code> matters on very high-dimensional text datasets like <code>rcv1</code>.</li>
-</ul>`,
+  <li><strong>Feature reconstruction (<code>θ<sub>x</sub></code>):</strong> Maps inputs <code>X</code> through label-specific weights <code>W<sub>x</sub> ∈ ℝ<sup>d × L</sup></code> toward <code>Y</code>.</li>
+  <li><strong>Class-dependent label mapping (<code>θ<sub>y</sub></code>):</strong> Maps initial label predictions <code>Y<sub>pred</sub></code> through label-dependency matrix <code>W<sub>y</sub> ∈ ℝ<sup>L × L</sup></code> so strong predictions on common labels help refine predictions on rare correlated labels.</li>
+  <li><strong>Label correlation coupling (<code>α · tr(R W<sub>x</sub><sup>T</sup> W<sub>x</sub>)</code>):</strong> Uses pairwise cosine distance matrix <code>R = cdist(Y<sup>T</sup> + ε, Y<sup>T</sup> + ε, "cosine")</code> so strongly correlated labels share relevant feature structure.</li>
+  <li><strong>Dual L1 sparsity (<code>β, γ</code>) + Ridge stability (<code>ρ</code>):</strong> <code>β ||W<sub>x</sub>||₁</code> prunes irrelevant features per label, <code>γ ||W<sub>y</sub>||₁</code> prunes spurious label links, and <code>ρ</code> keeps matrix inversions well-conditioned.</li>
+</ul>
+
+<h4>Optimization Mechanics in Code</h4>
+<p>Rather than initializing randomly, <code>_initialize_parameters</code> computes closed-form Ridge Regression warm starts:</p>
+<pre>W<sub>x</sub><sup>(0)</sup> = (X<sup>T</sup> X + ρ I)<sup>-1</sup> X<sup>T</sup> Y
+W<sub>y</sub><sup>(0)</sup> = (Y<sub>pred</sub><sup>T</sup> Y<sub>pred</sub> + ρ I)<sup>-1</sup> Y<sub>pred</sub><sup>T</sup> Y</pre>
+<p>At each iteration, it computes a global Lipschitz upper bound <code>L<sub>lip</sub></code> across the four smooth curvature terms (<code>3(θ<sub>x</sub>²‖X<sup>T</sup>X‖)² + 3(α‖R‖)² + 3(θ<sub>x</sub>θ<sub>y</sub>‖X<sup>T</sup>Y‖)² + 2(θ<sub>y</sub>²‖Y<sup>T</sup>Y‖)²</code>), takes a gradient step <code>η = 1 / L<sub>lip</sub></code> on both <code>W<sub>x</sub></code> and <code>W<sub>y</sub></code> (including cross-coupling terms <code>θ<sub>x</sub>θ<sub>y</sub></code>), and applies element-wise soft thresholding:</p>
+<pre>W<sub>x</sub> ← sign(W<sub>x</sub> − η ∇<sub>W<sub>x</sub></sub>) · max(|W<sub>x</sub> − η ∇<sub>W<sub>x</sub></sub>| − η β, 0)
+W<sub>y</sub> ← sign(W<sub>y</sub> − η ∇<sub>W<sub>y</sub></sub>) · max(|W<sub>y</sub> − η ∇<sub>W<sub>y</sub></sub>| − η γ, 0)</pre>
+<p>At inference time, <code>predict(X)</code> outputs calibrated probabilities via a numerically stable sigmoid <code>σ(X W<sub>x</sub>)</code>.</p>
+
+<h3>4. Experimental Setup &amp; Hyperparameter Regimes</h3>
+<p>In <code>python_src/config.py</code> and <code>src/config.m</code>, the hybrid framework is evaluated via 5-fold cross-validation across four multi-label benchmarks spanning biological, audio, web, and text domains:</p>
+<table>
+  <thead>
+    <tr><th>Dataset</th><th>Domain</th><th>Features (d)</th><th>Labels (L)</th><th>α / β / γ / ρ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>genbase</td><td>Protein classification</td><td>27</td><td>32</td><td>4⁻³ / 4⁻² / 4⁻¹ / 0.1</td></tr>
+    <tr><td>emotions</td><td>Music emotions</td><td>72</td><td>6</td><td>4⁵ / 4³ / 4³ / 0.1</td></tr>
+    <tr><td>recreation</td><td>Web categorization</td><td>606</td><td>20</td><td>4⁶ / 4⁴ / 4⁵ / 1.0</td></tr>
+    <tr><td>rcv1-sample1</td><td>Reuters text</td><td>47,236</td><td>101</td><td>4⁵ / 4³ / 4³ / 1.0</td></tr>
+  </tbody>
+</table>
+<p>Notice the engineering insight in that table: high-dimensional sparse text (<code>rcv1-sample1</code>, 47k features) requires heavier ridge damping (<code>ρ = 1.0</code>) and stronger L1/correlation regularization so tail-label synthetic neighbors do not overfit spurious rare tokens. Meanwhile, if a label has literally one positive instance in a fold, <code>MLSMOTE</code> gracefully falls back to copying that seed rather than dividing by zero.</p>`,
   },
   {
     slug: "llsf-learning-label-specific-features-feynman-guide",
     title: "LLSF Explained Simply: Letting Labels Share Hints While Picking Their Own Clues",
     subTitle:
-      "A first-principles walkthrough of Huang et al. (TKDE 2016) and my from-scratch Python implementation — how L1 sparsity, cosine label correlation, and accelerated proximal gradient work together.",
+      "A technical Feynman-style breakdown of Huang et al. (ICDM 2015 / IEEE TKDE 2016) — deriving the L1 + label-correlation objective, Lipschitz bound, and FISTA proximal solver from scratch.",
     kind: "Paper Deep Dive",
     publishedAt: "2026-11-26",
     publishedLabel: "Nov 26, 2026",
-    readingTime: "5 min read",
-    tags: ["multi-label", "llsf", "optimization", "feature-selection"],
+    readingTime: "8 min read",
+    tags: ["multi-label", "llsf", "fista", "proximal-gradient", "optimization"],
     repoUrl: "https://github.com/Prady029/LLSF-Learning-Label-Specific-Features-for-Multi-Label-Classifcation",
-    contentHtml: `<p>Traditional multi-label classifiers hand every label the exact same feature vector and train separate predictors side by side. The 2016 TKDE paper <em>Learning Label-Specific Features for Multi-Label Classification</em> (LLSF) asks a sharper question: <strong>what if each label picks its own small subset of clues, while listening to related labels?</strong></p>
+    contentHtml: `<p>Most introductory multi-label baselines fall into two extremes: <strong>Binary Relevance</strong> trains <code>L</code> independent classifiers using the exact same dense feature set for every label (ignoring label correlations and drowning small classes in irrelevant features), while <strong>Classifier Chains</strong> feed earlier predictions into later labels (fixing correlation, but introducing brittle chain-order sensitivity and error cascading).</p>
+<p>Huang, Li, Huang, and Wu (<em>IEEE TKDE, 2016</em>) proposed <strong>LLSF (Learning Label-Specific Features)</strong> to solve both issues inside a single convex optimization problem—without chaining labels sequentially. Here is how every piece of the math works, paired with my from-scratch scikit-learn implementation in <a href="https://github.com/Prady029/LLSF-Learning-Label-Specific-Features-for-Multi-Label-Classifcation/blob/master/llsf/llsf.py" target="_blank" rel="noopener noreferrer"><code>llsf/llsf.py</code></a>.</p>
 
-<h3>1. The Intuition: A Detective Team</h3>
-<p>Imagine you are sorting photos into tags like <code>beach</code>, <code>sunset</code>, <code>mountain</code>, and <code>snow</code> across 500 image features (colors, edges, textures):</p>
+<h3>1. The Core Idea: A Shared-Yet-Sparse Weight Matrix</h3>
+<p>Instead of constructing new features by hand, let <code>W ∈ ℝ<sup>d × L</sup></code> be a linear weight matrix where column <code>w<sub>·,j</sub></code> scores label <code>j</code>. If most entries of column <code>w<sub>·,j</sub></code> are <strong>exact zeros</strong>, then label <code>j</code> effectively only sees the subset of features where <code>w<sub>i,j</sub> ≠ 0</code>—its own <em>label-specific features</em>.</p>
+<p>Now suppose labels <code>beach</code> and <code>sunset</code> co-occur frequently. If <code>w<sub>·,beach</sub></code> uses feature 14 (warm horizon gradient) and feature 27 (water reflection), we want <code>w<sub>·,sunset</sub></code> to feel a gentle pull toward sharing similar features—especially if <code>sunset</code> has fewer training examples—while unrelated labels like <code>snow</code> remain free to select completely different features.</p>
+
+<h3>2. Deriving the Three-Term Objective</h3>
+<p>LLSF translates that intuition directly into a composite convex objective:</p>
+<pre>min<sub>W ∈ ℝ<sup>d × L</sup></sub>   ½ ||X W − Y||²<sub>F</sub>  +  (α / 2) tr(R W<sup>T</sup> W)  +  β ||W||₁</pre>
+<p>Each term plays one crisp geometric role:</p>
+<ol>
+  <li><strong>Data fidelity <code>½ ||X W − Y||²<sub>F</sub></code>:</strong> Standard least-squares loss encouraging <code>X W ≈ Y</code> across all <code>n</code> samples and <code>L</code> labels.</li>
+  <li><strong>Label-correlation regularization <code>(α / 2) tr(R W<sup>T</sup> W)</code>:</strong> Expanding the trace reveals why this couples columns of <code>W</code>:
+    <pre>tr(R W<sup>T</sup> W) = ∑<sub>i=1..L</sub> ∑<sub>j=1..L</sub> R<sub>ij</sub> · ⟨w<sub>·,i</sub>, w<sub>·,j</sub>⟩</pre>
+    In <code>llsf/llsf.py</code>, <code>R</code> is computed from the label columns via <code>cosine_similarity(Y<sup>T</sup> + ε)</code> (while the TKDE 2016 / <code>LLSF_DL</code> variant sets <code>R<sub>ij</sub> = 1 − cos(y<sub>i</sub>, y<sub>j</sub>)</code>, i.e., cosine distance, so high similarity imposes a small penalty on shared inner products and high dissimilarity penalizes overlap!).</li>
+  <li><strong>Label-specific sparsity <code>β ||W||₁ = β ∑<sub>i,j</sub> |W<sub>ij</sub>|</code>:</strong> The L1 norm has sharp corners along every coordinate axis, forcing weakly useful weights to <em>exact zero</em> rather than merely small decimals (unlike L2 Ridge regression).</li>
+</ol>
+
+<h3>3. Why Naive Gradient Descent Fails — And How FISTA Solves It</h3>
+<p>If you try ordinary gradient descent on this objective, you immediately hit a wall: <code>||W||₁</code> is <strong>not differentiable</strong> at <code>W<sub>ij</sub> = 0</code>. Subgradient methods oscillate near zero and almost never produce true zeros.</p>
+<p>The clean mathematical escape is <strong>Proximal Gradient Descent</strong>—specifically <strong>FISTA (Fast Iterative Shrinkage-Thresholding Algorithm)</strong>, which achieves an optimal <code>O(1/k²)</code> convergence rate for smooth + L1 problems. Split the objective into <code>f(W) + g(W)</code>, where:</p>
 <ul>
-  <li>To spot <code>beach</code>, maybe only 12 features (sand hue, horizon smoothness, blue water) actually matter—the other 488 are distractions.</li>
-  <li>To spot <code>sunset</code>, orange sky gradients matter—and notice that <code>beach</code> and <code>sunset</code> show up together often, whereas <code>beach</code> and <code>snow</code> rarely do.</li>
+  <li><code>f(W) = ½ ||X W − Y||²<sub>F</sub> + (α / 2) tr(R W<sup>T</sup> W)</code> is smooth and convex, with gradient:
+    <pre>∇f(W) = X<sup>T</sup> X W − X<sup>T</sup> Y + α W R</pre>
+  </li>
+  <li><code>g(W) = β ||W||₁</code> is non-smooth but has a closed-form proximal operator!</li>
 </ul>
-<p>Instead of building 4 completely blind detectors, LLSF learns one weight matrix <code>W</code> (shape: <code>features × labels</code>) where column <code>j</code> is the personalized checklist of clues for label <code>j</code>.</p>
 
-<h3>2. Three Simple Rules in One Objective</h3>
-<p>Every piece of the LLSF objective corresponds to one common-sense requirement:</p>
-<pre>min  ||XW - Y||²_F  +  α · tr(W^T W R)  +  β · ||W||₁</pre>
+<h4>Step-by-Step Through <code>LLSFClassifier._fit_weight_matrix</code></h4>
 <ol>
-  <li><strong>Rule 1 — Be accurate (<code>||XW - Y||²_F</code>):</strong> Multiplying inputs <code>X</code> by weights <code>W</code> should match the true label matrix <code>Y</code>.</li>
-  <li><strong>Rule 2 — Share clues between friends (<code>α · tr(W^T W R)</code>):</strong> <code>R</code> measures how strongly two labels correlate (via cosine similarity between columns of <code>Y</code>). If two labels correlate strongly, this penalty encourages their columns in <code>W</code> to rely on overlapping features.</li>
-  <li><strong>Rule 3 — Ignore noise (<code>β · ||W||₁</code>):</strong> The L1 penalty forces unneeded weights to <em>exact zero</em>. Each label ends up using only its own sparse set of label-specific features.</li>
+  <li><strong>Precompute Gram matrices once:</strong> Compute <code>XTX = X<sup>T</sup> X</code> (<code>d × d</code>) and <code>XTY = X<sup>T</sup> Y</code> (<code>d × L</code>) outside the loop. Once precomputed, every optimization iteration costs <code>O(d²L + dL²)</code>—completely independent of sample count <code>n</code>!</li>
+  <li><strong>Ridge Regression warm start:</strong> Initialize <code>W<sub>0</sub> = (X<sup>T</sup> X + γ I)<sup>-1</sup> X<sup>T</sup> Y</code> (falling back to Moore-Penrose <code>pinv</code> if singular).</li>
+  <li><strong>Exact Lipschitz bound for guaranteed step stability:</strong> Compute the Lipschitz constant of <code>∇f</code>:
+    <pre>L<sub>lip</sub> = sqrt( 2 ||X<sup>T</sup> X||²<sub>F</sub> + ||α R||²<sub>F</sub> )</pre>
+    Taking step size <code>1 / L<sub>lip</sub></code> guarantees monotonic descent without tuning a learning rate.</li>
+  <li><strong>Nesterov momentum extrapolation:</strong> Maintain <code>β<sub>k</sub> = (1 + sqrt(1 + 4 β<sub>k-1</sub>²)) / 2</code> and extrapolate:
+    <pre>W<sub>mom</sub> = W<sub>k</sub> + ((β<sub>k-1</sub> − 1) / β<sub>k</sub>) (W<sub>k</sub> − W<sub>k-1</sub>)
+W<sub>grad</sub> = W<sub>mom</sub> − (1 / L<sub>lip</sub>) (X<sup>T</sup> X W<sub>mom</sub> − X<sup>T</sup> Y + α W<sub>mom</sub> R)</pre>
+  </li>
+  <li><strong>Soft thresholding (the proximal operator of L1):</strong> Shrink every entry toward zero by <code>τ = β / L<sub>lip</sub></code> via <code>_soft_threshold</code>:
+    <pre>S<sub>τ</sub>(z) = max(z − τ, 0) − max(−z − τ, 0)</pre>
+    Any weight inside <code>[−τ, +τ]</code> collapses to exact <code>0.0</code>, carving out label-specific features automatically.</li>
 </ol>
 
-<blockquote><strong>Why this combination is clever:</strong> L1 sparsity makes each label picky; label correlation stops a rare label from dropping a clue that its close sibling label already knows is useful.</blockquote>
-
-<h3>3. How the Code Solves It Without Slow Loops</h3>
-<p>Because <code>||W||₁</code> has sharp corners at zero, ordinary gradient descent zig-zags. In <a href="https://github.com/Prady029/LLSF-Learning-Label-Specific-Features-for-Multi-Label-Classifcation/blob/master/llsf/llsf.py" target="_blank" rel="noopener noreferrer"><code>LLSFClassifier</code></a>, the solver uses three clean steps:</p>
-<ol>
-  <li><strong>Ridge warm-start:</strong> Compute an analytical starting point <code>W = inv(X^T X + γI) X^T Y</code> instead of starting from random noise.</li>
-  <li><strong>Accelerated momentum step:</strong> Use FISTA-style Nesterov momentum (<code>beta_k = (1 + sqrt(1 + 4 * beta_k²)) / 2</code>) and step along the smooth gradient <code>X^T X W - X^T Y + α W R</code> divided by the Lipschitz constant.</li>
-  <li><strong>The sculptor’s chisel (<code>_soft_threshold</code>):</strong> Apply <code>sign(w) * max(|w| - β/L, 0)</code>. Any tiny weight smaller than the threshold gets snapped cleanly to <code>0</code>—creating true label-specific sparsity.</li>
-</ol>
-
-<pre>def _soft_threshold(W, threshold):
-    return np.maximum(W - threshold, 0) - np.maximum(-W - threshold, 0)</pre>
-
-<h3>4. What You Gain (and When to Upgrade)</h3>
-<p>LLSF gives you interpretable, per-label feature selection in a clean scikit-learn API (<code>fit</code>, <code>predict</code>, <code>predict_proba</code>). Its main limit is that it assumes a linear relationship from <code>X</code> to <code>Y</code>—which is why pairing label-specific features with oversampling (like MLSMOTE) or non-linear clustering (like LIFT) becomes so effective on harder datasets.</p>`,
+<h3>4. Hyperparameter Sensitivity &amp; Engineering Notes</h3>
+<ul>
+  <li><strong><code>alpha</code> (default <code>2⁻⁵</code>):</strong> Controls how aggressively correlated labels pull on each other’s feature weights. Too large and distinct labels blur together; zero reduces LLSF to independent L1-regularized multi-output regressors.</li>
+  <li><strong><code>beta</code> (default <code>2⁻³</code>):</strong> Controls feature sparsity. Higher <code>beta</code> yields sparser per-label feature sets at the risk of underfitting subtle signals.</li>
+  <li><strong>Limitations:</strong> Because <code>X W</code> is linear in <code>X</code>, LLSF struggles if a label’s positive class forms disconnected, non-linear islands in feature space—which motivates either mapping features geometrically first (<strong>LIFT</strong>) or pairing LLSF-DL with synthetic tail-label augmentation (<strong>MLSMOTE</strong>).</li>
+</ul>`,
   },
   {
     slug: "lift-label-specific-features-feynman-guide",
     title: "LIFT Explained Simply: Measuring Distance to Positive and Negative Neighborhoods",
     subTitle:
-      "How the LIFT algorithm turns any raw feature space into custom distance-based features for every label — walked through via my scikit-learn compatible implementation.",
+      "A technical Feynman-style walkthrough of Zhang & Wu (IEEE TPAMI 2014) and my scikit-learn implementation — how class-conditional K-Means prototypes turn non-linear multi-label boundaries into linear ones.",
     kind: "Paper Deep Dive",
     publishedAt: "2026-11-26",
     publishedLabel: "Nov 26, 2026",
-    readingTime: "4 min read",
-    tags: ["multi-label", "lift", "clustering", "scikit-learn"],
+    readingTime: "7 min read",
+    tags: ["multi-label", "lift", "clustering", "prototypes", "scikit-learn"],
     repoUrl: "https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features",
-    contentHtml: `<p>Before deep embeddings were everywhere, <strong>LIFT</strong> (<em>Multi-Label Learning with Label-Specific Features</em>) introduced an extraordinarily simple geometric trick: if two labels care about different patterns, don’t feed classifiers the same raw coordinates—<strong>re-describe every data point by its distance to each label’s positive and negative prototypes</strong>.</p>
+    contentHtml: `<p>Consider a classic limitation of linear multi-label classifiers: even if every label gets its own weight vector <code>w<sub>l</sub></code>, a single hyperplane <code>w<sub>l</sub><sup>T</sup> x + b = 0</code> can only slice <code>ℝ<sup>d</sup></code> in half once. What if positive examples of a label live in <strong>multiple separated regions</strong>—say, two distinct genres of “electronic” music or three different visual contexts for “water”?</p>
+<p>You could train <code>L</code> non-linear kernel SVMs, which scales poorly (<code>O(n² d)</code> to <code>O(n³)</code>) and still uses identical feature representations across every label. Instead, Zhang &amp; Wu (<em>IEEE TPAMI, 2014</em>) introduced <strong>LIFT (Multi-Label Learning with Label-Specific Features)</strong>: an elegant two-stage geometric transformation implemented cleanly in <a href="https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features/blob/master/src/lift_ml/transformer.py" target="_blank" rel="noopener noreferrer"><code>LIFTTransformer</code></a> and <a href="https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features/blob/master/src/lift_ml/classifier.py" target="_blank" rel="noopener noreferrer"><code>LIFTClassifier</code></a>.</p>
 
-<h3>1. The Everyday Analogy: Asking Where You Stand</h3>
-<p>Suppose you want to know whether a house is <em>“family-friendly”</em> and whether it is <em>“nightlife-friendly”</em>. Raw latitude and longitude numbers are awkward for a simple classifier because “family-friendly” pockets exist in three different suburbs, and “nightlife” pockets exist in two downtown districts.</p>
-<p>Instead of giving a classifier raw GPS coordinates, imagine placing <code>k</code> pins in the middle of the top “family-friendly” neighborhoods and <code>k</code> pins in the middle of the non-family neighborhoods. Now ask just one simple question for any house: <strong>“How far is this house from each pin?”</strong> Suddenly, even a simple linear classifier can draw the boundary effortlessly.</p>
+<h3>1. The Feynman Intuition: Coordinates vs. Landmarks</h3>
+<p>Imagine trying to describe whether a house is “coastal” using raw latitude and longitude along a jagged coastline with bays and peninsulas. A single straight line on a map fails badly. Now instead, plant <code>k</code> flags on the beaches (positive prototypes) and <code>k</code> flags inland (negative prototypes), and replace GPS coordinates with the <strong>list of distances from each house to every flag</strong>.</p>
+<p>Suddenly, “being near at least one beach flag and far from inland flags” is trivial for even a simple linear classifier to express.</p>
 
-<blockquote><strong>The central idea of LIFT:</strong> For each label separately, cluster its positive examples into <code>k</code> prototypes and its negative examples into <code>k</code> prototypes, then replace the original features with distances to those prototypes.</blockquote>
+<blockquote><strong>The central insight of LIFT:</strong> Cluster each label’s positive and negative training sets separately to discover underlying modes, then re-represent every sample by its Euclidean distances to those label-specific centroids.</blockquote>
 
-<h3>2. Walking Through the Implementation</h3>
-<p>In <a href="https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features/blob/master/src/lift_ml/transformer.py" target="_blank" rel="noopener noreferrer"><code>LIFTTransformer</code></a>, this happens cleanly in two scikit-learn methods:</p>
+<h3>2. Mathematical Formulation &amp; Code Walkthrough</h3>
+<p>Given training data <code>X ∈ ℝ<sup>n × d</sup></code> and binary labels <code>Y ∈ {0, 1}<sup>n × L</sup></code>, LIFT constructs a dedicated feature mapping <code>φ<sub>l</sub> : ℝ<sup>d</sup> → ℝ<sup>2k</sup></code> for each label <code>l ∈ {1, …, L}</code>:</p>
+
+<h4>Stage 1: Class-Conditional Prototype Discovery (<code>LIFTTransformer.fit</code>)</h4>
 <ol>
-  <li><strong><code>fit(X, y)</code> — Find prototypes per label:</strong> For each column <code>label_idx</code>, split rows into <code>pos_data = X[y[:, label_idx] == 1]</code> and <code>neg_data = X[y[:, label_idx] == 0]</code>. Run <code>KMeans</code> separately on each set (capping <code>k</code> safely with <code>min(self.k, len(pos_data))</code> so tiny classes never crash) and store the cluster centroids.</li>
-  <li><strong><code>transform(X)</code> — Build the distance rulers:</strong> Compute Euclidean distances from every sample to each label’s positive centroids and negative centroids:
-    <pre>pos_distances = np.linalg.norm(X[:, None, :] - pos_centers[None, :, :], axis=2)
-neg_distances = np.linalg.norm(X[:, None, :] - neg_centers[None, :, :], axis=2)</pre>
-  </li>
+  <li><strong>Partition per label:</strong> Split <code>X</code> into positive instances <code>𝒫<sub>l</sub> = {x<sub>i</sub> : Y<sub>il</sub> = 1}</code> and negative instances <code>𝒩<sub>l</sub> = {x<sub>i</sub> : Y<sub>il</sub> = 0}</code>.</li>
+  <li><strong>Cluster both sets independently:</strong> Run K-Means on <code>𝒫<sub>l</sub></code> to obtain <code>k<sub>l</sub><sup>+</sup></code> positive centroids <code>{p<sub>l,1</sub>, …, p<sub>l,k⁺</sub>}</code>, and on <code>𝒩<sub>l</sub></code> to obtain <code>k<sub>l</sub><sup>−</sup></code> negative centroids <code>{n<sub>l,1</sub>, …, n<sub>l,k⁻</sub>}</code>.
+    <br/><em>Implementation detail:</em> In Zhang &amp; Wu (2014), cluster counts scale with a ratio parameter <code>r · min(|𝒫<sub>l</sub>|, |𝒩<sub>l</sub>|)</code> so positive and negative prototype sets stay balanced even under class skew. In <code>LIFTTransformer</code>, <code>k</code> is safely clamped via <code>min(self.k, len(pos_data))</code> (and falls back to zero vectors if a training split lacks positives or negatives) so small folds never fail.</li>
 </ol>
-<p>Each label gets <code>2k</code> custom distance features tailored specifically to its own geometry, and <a href="https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features/blob/master/src/lift_ml/classifier.py" target="_blank" rel="noopener noreferrer"><code>LIFTClassifier</code></a> can pair that representation with any scikit-learn estimator (plus optional Bayesian search over <code>k</code>).</p>
+<p><strong>Why cluster negatives too?</strong> Negative instances are rarely uniform noise—they contain specific “hard negative” look-alikes. Placing centroids inside negative sub-clusters lets the downstream classifier explicitly contrast proximity to true positives against proximity to confounder modes.</p>
 
-<h3>3. Why It Works &amp; Its Blind Spot</h3>
+<h4>Stage 2: Distance-Space Mapping (<code>LIFTTransformer.transform</code>)</h4>
+<p>For any sample <code>x ∈ ℝ<sup>d</sup></code>, compute the vector of Euclidean distances to all positive and negative centroids for label <code>l</code>:</p>
+<pre>φ<sub>l</sub>(x) = [ ||x − p<sub>l,1</sub>||₂, …, ||x − p<sub>l,k⁺</sub>||₂, ||x − n<sub>l,1</sub>||₂, …, ||x − n<sub>l,k⁻</sub>||₂ ]</pre>
+<p>In vectorized NumPy inside <code>LIFTTransformer.transform</code>:</p>
+<pre>pos_distances = np.linalg.norm(X[:, None, :] − pos_centers[None, :, :], axis=2)
+neg_distances = np.linalg.norm(X[:, None, :] − neg_centers[None, :, :], axis=2)</pre>
+<p>Notice the subtle geometric effect: each coordinate <code>||x − c||₂</code> behaves like a radial basis feature centered on a data-driven mode. A linear model <code>w<sup>T</sup> φ<sub>l</sub>(x)</code> trained on these <code>2k</code> distances effectively builds a smooth non-linear decision surface in the original <code>ℝ<sup>d</sup></code> space.</p>
+
+<h4>Stage 3: Downstream Multi-Output Training &amp; Bayesian Tuning (<code>LIFTClassifier</code>)</h4>
+<p>In <code>LIFTClassifier</code>, the pipeline chains <code>LIFTTransformer</code> into <code>MultiOutputClassifier(LogisticRegression(max_iter=1000))</code> (or any scikit-learn estimator). Enabling <code>auto_tune=True</code> wraps the pipeline in <code>BayesSearchCV</code> over <code>lift__k ∈ [1, 10]</code> optimizing <code>f1_macro</code> across CV folds—finding the sweet spot between too few clusters (underfitting multi-modal shapes) and too many clusters (overfitting noisy outliers).</p>
+
+<h3>3. Benchmarks &amp; Complexity Analysis</h3>
+<p>From the repository benchmarks comparing LIFT against standard multi-label baselines:</p>
+<table>
+  <thead>
+    <tr><th>Dataset</th><th>LIFT</th><th>Binary Relevance</th><th>Classifier Chains</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>emotions</td><td><strong>0.658</strong></td><td>0.634</td><td>0.641</td></tr>
+    <tr><td>scene</td><td><strong>0.721</strong></td><td>0.692</td><td>0.708</td></tr>
+    <tr><td>yeast</td><td><strong>0.598</strong></td><td>0.573</td><td>0.581</td></tr>
+  </tbody>
+</table>
 <ul>
-  <li><strong>Strength:</strong> Even when positive examples form disconnected islands in feature space, distances to K-Means prototypes capture non-linear boundaries using simple, fast base learners.</li>
-  <li><strong>Limitation:</strong> Standard K-Means uses unweighted Euclidean distance, so irrelevant noisy dimensions can distort distances—and unlike LLSF, LIFT treats labels independently when building clusters rather than sharing label correlations.</li>
+  <li><strong>Computational cost:</strong> Fitting K-Means per label costs roughly <code>O(L · T · n · k · d)</code> (much faster than <code>O(n²–n³)</code> kernel matrices on large <code>n</code>), and inference reduces to simple matrix distance broadcasting plus linear classification in <code>2k</code> dimensions.</li>
+  <li><strong>Where LIFT bends vs. LLSF:</strong> Because <code>||x − c||₂</code> weights all <code>d</code> raw input dimensions equally inside K-Means, high-dimensional datasets dominated by irrelevant noisy features can degrade cluster quality unless regularized or paired with feature selection—which is precisely the motivation behind sparse feature-learning methods like <strong>LLSF</strong>.</li>
 </ul>`,
   },
   {

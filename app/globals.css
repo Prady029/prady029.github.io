@@ -206,3 +206,31 @@ html.dark {
   color: var(--text-muted);
   text-align: center;
 }
+
+.article-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+}
+
+.article-prose th,
+.article-prose td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-prose th {
+  color: var(--text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-strong);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.article-prose td {
+  color: var(--text-secondary);
+}
