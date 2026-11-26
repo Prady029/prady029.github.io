@@ -262,6 +262,16 @@ export const education = [
 
 export const projects = [
   {
+    name: "Music Visualiser",
+    description:
+      "1st-place house-party vibe-coding winner — real-time in-browser speaker & tab audio visualizer with 14 Canvas 2D modes, cymatics physics, and 29 perceptual OKLab themes.",
+    language: "JavaScript",
+    stars: 0,
+    url: "https://prady029.github.io/Music_Visualiser/",
+    tags: ["Web Audio", "Canvas 2D", "OKLab", "Live App"],
+    emoji: "🎵",
+  },
+  {
     name: "LLSF: Learning Label-Specific Features",
     description:
       "Research paper implementation from scratch for improving multi-label classification on imbalanced datasets using the Label-Specific Feature learning (LLSF) algorithm.",
