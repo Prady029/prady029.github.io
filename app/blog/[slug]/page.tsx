@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Background from "@/components/Background";
+import BlogIllustration from "@/components/BlogIllustration";
 import { blogs, personalInfo } from "@/data/portfolio";
 
 const SITE_URL = "https://prady029.github.io";
@@ -121,6 +122,8 @@ export default async function BlogPostPage({
               ))}
             </div>
           </header>
+
+          <BlogIllustration slug={post.slug} />
 
           <div
             className="article-prose"
