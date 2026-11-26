@@ -30,7 +30,7 @@ export default function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="pt-16 pb-16 sm:pt-20 sm:pb-20"
+      className="pt-8 pb-12 sm:pt-10 sm:pb-14"
     >
       <SectionHeading
         index="05"
@@ -83,7 +83,7 @@ export default function ContactSection() {
         ))}
       </div>
 
-      <footer className="mt-16 pt-8 border-t border-[var(--border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] text-[var(--text-muted)]">
+      <footer className="mt-10 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] text-[var(--text-muted)]">
         <span>
           © 2026 {personalInfo.name} · {personalInfo.location}
         </span>

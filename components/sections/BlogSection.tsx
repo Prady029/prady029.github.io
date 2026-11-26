@@ -6,7 +6,7 @@ export default function BlogSection() {
     <section
       id="blog"
       aria-labelledby="blog-heading"
-      className="py-16 sm:py-20"
+      className="py-8 sm:py-10"
     >
       <SectionHeading
         index="04"

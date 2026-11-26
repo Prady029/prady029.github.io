@@ -5,10 +5,10 @@ export default function HeroSection() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="pt-14 pb-20 sm:pt-20 sm:pb-24"
+      className="pt-8 pb-10 sm:pt-12 sm:pb-12"
     >
       {/* Eyebrow */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-7 font-mono text-xs text-[var(--text-muted)]">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-5 font-mono text-xs text-[var(--text-muted)]">
         <span className="inline-flex items-center gap-2 text-[var(--accent)] font-medium">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />
           {personalInfo.role}
@@ -20,30 +20,30 @@ export default function HeroSection() {
       </div>
 
       {/* Name + Portrait */}
-      <div className="flex flex-col-reverse sm:flex-row sm:items-start justify-between gap-8 mb-8">
-        <div className="max-w-2xl">
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-8 mb-7">
+        <div className="max-w-xl">
           <h1
             id="hero-heading"
-            className="font-editorial text-4xl sm:text-5xl md:text-[3.35rem] font-medium tracking-[-0.02em] leading-[1.08] text-[var(--text)] mb-5"
+            className="font-editorial text-4xl sm:text-5xl md:text-[3.25rem] font-medium tracking-[-0.02em] leading-[1.08] text-[var(--text)] mb-4"
           >
             {personalInfo.name}
           </h1>
-          <p className="text-lg sm:text-xl text-[var(--text-secondary)] leading-relaxed font-normal mb-5">
+          <p className="text-lg sm:text-[1.2rem] text-[var(--text-secondary)] leading-relaxed font-normal mb-4">
             {personalInfo.headline}
           </p>
-          <p className="text-[15px] text-[var(--text-muted)] leading-relaxed max-w-xl">
+          <p className="text-[15px] text-[var(--text-muted)] leading-relaxed">
             {personalInfo.summary}
           </p>
         </div>
 
         <div className="shrink-0">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-[var(--border-strong)] bg-[var(--surface-subtle)]">
+          <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-52 rounded-2xl overflow-hidden border border-[var(--border-strong)] bg-[var(--surface-subtle)] shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={personalInfo.avatar}
               alt={`${personalInfo.name} — ${personalInfo.role}`}
-              width={112}
-              height={112}
+              width={208}
+              height={208}
               className="w-full h-full object-cover"
             />
           </div>
@@ -51,7 +51,7 @@ export default function HeroSection() {
       </div>
 
       {/* Actions & Links */}
-      <div className="flex flex-wrap items-center gap-3 mb-14">
+      <div className="flex flex-wrap items-center gap-3 mb-9">
         <a
           href={`mailto:${personalInfo.email}`}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-[var(--text)] text-[var(--bg)] hover:opacity-90 transition-opacity"

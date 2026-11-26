@@ -12,7 +12,7 @@ export default function SectionHeading({
   headingId,
 }: SectionHeadingProps) {
   return (
-    <div className="mb-10 pb-5 border-b border-[var(--border)]">
+    <div className="mb-6 pb-3.5 border-b border-[var(--border)]">
       <div className="flex items-baseline gap-3">
         <span className="font-mono text-xs text-[var(--accent)] tabular-nums">
           {index}

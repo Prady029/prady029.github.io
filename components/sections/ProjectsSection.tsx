@@ -9,7 +9,7 @@ export default function ProjectsSection() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="py-16 sm:py-20"
+      className="py-8 sm:py-10"
     >
       <SectionHeading
         index="02"

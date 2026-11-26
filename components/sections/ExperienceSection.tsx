@@ -6,7 +6,7 @@ export default function ExperienceSection() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="py-16 sm:py-20"
+      className="py-8 sm:py-10"
     >
       <SectionHeading
         index="01"
@@ -19,7 +19,7 @@ export default function ExperienceSection() {
         {experience.map((role) => (
           <article
             key={role.company}
-            className="py-8 first:pt-0 last:pb-0 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8"
+            className="py-6 first:pt-0 last:pb-0 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8"
           >
             {/* Left metadata column */}
             <div className="md:col-span-4 space-y-1">
@@ -76,7 +76,7 @@ export default function ExperienceSection() {
       </div>
 
       {/* Education & Certifications */}
-      <div className="mt-16 pt-12 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
+      <div className="mt-10 pt-8 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-12 gap-8">
         {/* Education */}
         <div className="md:col-span-5">
           <h3 className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)] mb-5">
