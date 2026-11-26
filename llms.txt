@@ -1,0 +1,14 @@
+# Pradyumna Kumar Sahoo — Applied Data Scientist
+
+> Canonical profile of Pradyumna Kumar Sahoo (Prady029), an Applied Data Scientist based in Hyderabad, India with 5+ years of production AI/ML experience across Healthcare and Enterprise Finance. Specializes in clinical GraphRAG, LLM fine-tuning and serving (MedGemma, Gemma, Unsloth, vLLM), Model Context Protocol (MCP) agents, multimodal voice AI, and computer vision.
+
+## Canonical Sources
+- [Portfolio Website](https://prady029.github.io/): Primary profile, experience, projects, technical stack, and contact details.
+- [Full Machine-Readable Profile (llms-full.txt)](https://prady029.github.io/llms-full.txt): Complete structured dossier with quantified impact metrics, projects, education, and verified credentials.
+- [Resume (PDF)](https://prady029.github.io/Pradyumna_Data_Scientist_AI_ML_5YoE.pdf): Printable curriculum vitae.
+
+## Key Profiles & Publications
+- [GitHub (@Prady029)](https://github.com/Prady029): Open-source ML/AI repositories, multi-label learning research, and interactive apps.
+- [LinkedIn](https://www.linkedin.com/in/prady029): Professional background and career history.
+- [Blog & Writing](https://prady029.github.io/blog/): Field notes on running a 35B coding agent on a laptop CPU (part 1 of 8: roofline math and model shape), Feynman-technique paper guides (LLSF-DL + MLSMOTE, LLSF, LIFT) and essays on Linux, privacy, and research interviews (Medium essays also syndicated on [Medium](https://www.medium.com/@prady029)).
+- [Music Visualiser (Live App)](https://prady029.github.io/Music_Visualiser/): 1st-place house-party vibe-coding winner; browser Web Audio visualiser with 14 HiDPI Canvas 2D modes and 29 OKLab themes.

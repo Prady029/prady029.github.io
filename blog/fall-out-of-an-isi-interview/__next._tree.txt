@@ -1,0 +1,6 @@
+:HL["/_next/static/css/cb01c3a24707859c.css","style"]
+:HL["https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap","style"]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":{"n":"slug","t":"d","k":"fall-out-of-an-isi-interview","s":[]},"h":96,"c":"$Q3"}]]
+1:[["children",{"s":"blog","h":96,"c":"$Q2"}]]
+0:{"b":"HZeA_Jqp1KsiFm4eaYJ_u","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
