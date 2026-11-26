@@ -20,11 +20,16 @@ function subscribe(listener: () => void) {
 }
 
 function getSnapshot(): Theme {
-  return (localStorage.getItem("theme") as Theme | null) ?? "dark";
+  if (typeof window === "undefined") return "light";
+  const stored = localStorage.getItem("theme");
+  if (stored === "light" || stored === "dark") return stored;
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 function getServerSnapshot(): Theme {
-  return "dark";
+  return "light";
 }
 
 function setStoredTheme(theme: Theme) {
@@ -38,7 +43,7 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
-  theme: "dark",
+  theme: "light",
   toggle: () => {},
 });
 

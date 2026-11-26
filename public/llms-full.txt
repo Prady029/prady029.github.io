@@ -1,0 +1,90 @@
+# Pradyumna Kumar Sahoo — Applied Data Scientist
+
+Canonical URL: https://prady029.github.io/
+Location: Hyderabad, India
+Email: pradyumna.sahoo@outlook.in
+GitHub: https://github.com/Prady029
+LinkedIn: https://www.linkedin.com/in/prady029
+Medium: https://www.medium.com/@prady029
+X / Twitter: https://www.twitter.com/prady029
+Resume PDF: https://prady029.github.io/Pradyumna_Data_Scientist_AI_ML_5YoE.pdf
+
+## Summary
+Pradyumna Kumar Sahoo is an Applied Data Scientist with 5+ years of experience building and deploying production AI/ML systems across Healthcare and Enterprise Finance. His core work spans medical-grade GraphRAG clinical decision support systems, LLM fine-tuning and serving, Model Context Protocol (MCP) tool ecosystems, multimodal clinical voice agents, enterprise agentic assistants, and computer vision pipelines, including research collaborations with scholars at IIT Madras and IIT Hyderabad.
+
+## Quantified Highlights
+- 5+ years of production AI/ML delivery across Healthcare and Enterprise Finance.
+- 95% mAP vehicle parts instance segmentation accuracy using Detectron2 and FastAPI (+26% assessment throughput).
+- ~24 hours saved per employee per month via an org-wide enterprise agentic assistant built on Google ADK and AWS OpenSearch.
+- 73 payroll cycles per client optimized on average via a Databricks and Microsoft Power Automate Process Mining Chatbot.
+- 30% reduction in manual ML root-cause diagnosis time using automated MLflow inference drift tracing.
+- 16% reduction in vision model failures and +12% downstream accuracy from a SWIN2SR + NAFNet super-resolution and denoising ensemble.
+- ADP Global Hackathon (2024) Runner-up for a Knowledge-Graph RAG pipeline on AWS Neptune, AWS Bedrock, and LangGraph.
+
+## Professional Experience
+
+### Data Scientist — Mondee Pvt. Ltd. (Aug 2025 – Present · Hyderabad, India)
+- Architected a medical-grade GraphRAG audio chatbot for a flagship Clinical Decision Support System (CDSS) deployed across Surekha Hospital Chain and BhaktiVedant Hospital, constructing structured Neo4j knowledge graphs from medical textbooks via NER to deliver traceable, hallucination-resistant clinical retrieval via LangChain.
+- Engineered a drug–drug interaction checker and dosage scheduler served through a Model Context Protocol (MCP) interface, integrating live RxNorm and PubMed APIs for patient-specific conflict alerts inside clinical chat sessions.
+- Led end-to-end fine-tuning and vLLM serving of `Medgemma-27b-text-it` for clinical NLP tasks using Unsloth in collaboration with research scholars from IIT Madras and IIT Hyderabad.
+- Directed clinical STT/ASR data curation, Subject Matter Expert annotation QA, and LoRA multimodal fine-tuning of `gemma-3n-e2b-it` with TGI serving for real-time clinical transcription and Doctor's Note generation.
+
+### Senior Member Technical (AI/ML) — ADP India Pvt. Ltd. (Dec 2023 – Jul 2025 · Hyderabad, India)
+- Designed and deployed a Knowledge-Graph RAG pipeline on AWS Neptune and AWS Bedrock orchestrated via LangGraph to improve financial data accuracy (Runner-up, ADP Global Hackathon 2024).
+- Built an intelligent Process Mining Chatbot for Global Payroll Services using Microsoft Power Automate and Databricks, analyzing transaction patterns across millions of client records to optimize workflows across an average of 73 payroll cycles per client.
+- Engineered an org-wide agentic assistant on Google Agent Development Kit (ADK) and AWS OpenSearch that drafts context-aware emails and schedules meetings from live calendars, saving ~24 hours per employee per month across all ADP employees.
+- Deployed a fine-tuned YOLOv8 + OpenCV QR detection, decoding, and masking pipeline alongside an IndicNLP + HuggingFace NER PII redaction system covering Aadhaar, PAN, and account identifiers across 10+ Indic scripts on millions of payroll documents.
+
+### Junior Data Scientist — Claim Genius Pvt. Ltd. (Jun 2021 – Dec 2023 · Remote, India)
+- Built a Detectron2 + FastAPI instance segmentation pipeline for vehicle parts identification reaching 95% mAP (+26% assessment throughput), paired with GradCAM++ visualisations for regulatory auditability.
+- Engineered an automated MLflow inference drift and failure-tracing pipeline, cutting manual root-cause diagnosis time by 30%.
+- Deployed a SWIN2SR + NAFNet super-resolution and denoising ensemble on compressed field imagery, reducing model failures by 16% and lifting downstream accuracy by 12%.
+- Built confidence-based label auditing in Scikit-learn (saving 6 man-hours per engineer per sprint), trained PyTorch GANs for rare-class synthetic image augmentation, designed zero-shot OpenCV polygon flat-tyre detection, and boosted damage severity classification by 3% per class via a PyTorch CNN + XGBoost fusion ensemble.
+
+## Selected Open-Source Projects & Research
+1. Music Visualiser — Live browser speaker & tab Web Audio visualiser with 14 HiDPI Canvas 2D modes, cymatics physics, 29 perceptual OKLab themes, and a macOS terminal CLI (1st place house-party vibe-coding winner).
+   - Live App: https://prady029.github.io/Music_Visualiser/
+   - Repository: https://github.com/Prady029/Music_Visualiser
+2. LLSF-DL MLSMOTE Hybrid for Tail Labels — Master's thesis combining deep learning with Label-Specific Feature learning and MLSMOTE synthetic oversampling for severe tail-label imbalance in multi-label classification.
+   - Repository: https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels
+3. LLSF: Learning Label-Specific Features — From-scratch Python implementation of the LLSF algorithm for imbalanced multi-label classification.
+   - Repository: https://github.com/Prady029/LLSF-Learning-Label-Specific-Features-for-Multi-Label-Classifcation
+4. LIFT: Multi-Label Learning with Label-Specific Features — Reference Python implementation of the LIFT label-specific feature transformation algorithm.
+   - Repository: https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features
+5. NCERT AI Teacher Assistant — Agentic LLM assistant for curriculum-aligned lesson plans and question generation.
+   - Repository: https://github.com/Prady029/NCERT-AI-Teacher-Assistant
+6. Multi-label Datasets — Curated multi-label classification benchmark collection for class imbalance experiments.
+   - Repository: https://github.com/Prady029/Multillabel-Datasets
+7. Fuzzy Computing Programs — Fuzzy sets, fuzzy inference engines, and control coursework implementations (CURAJ).
+   - Repository: https://github.com/Prady029/Fuzzy_programs
+8. Early Days of Machine Learning — First-principles supervised, unsupervised, and regression implementations (2018).
+   - Repository: https://github.com/Prady029/My-early-days-of-machine-learning
+9. DSA 101 — Data Structures and Algorithms notes and solutions in Python.
+   - Repository: https://github.com/Prady029/DSA_101
+
+## Technical Stack
+- LLM Training & Serving: Full Fine-tuning, PEFT / LoRA / QLoRA, Instruction Tuning, RLHF / DPO, bf16/fp16, vLLM, Unsloth, GPTQ / AWQ / bitsandbytes, HuggingFace Transformers, DSPy
+- Agentic & RAG Systems: LangGraph, LangChain, Model Context Protocol (MCP), Google ADK, LiveKit, Multimodal RAG, Tool-Use & Function Calling, Multi-Agent Orchestration
+- Knowledge Graphs & Search: Neo4j, AWS Neptune, AWS OpenSearch, Qdrant, LanceDB, Agentic KG Construction, RxNorm API, PubMed API
+- Vision, Audio & Classical ML: PyTorch, Detectron2, YOLOv8, OpenCV, GradCAM++, GANs, SWIN2SR, NAFNet, Clinical ASR, Scikit-learn, XGBoost, SpaCy / IndicNLP
+- MLOps & Cloud: AWS (Bedrock, Neptune, Lambda, S3, EC2), GCP Vertex AI, Azure ML, FastAPI, Docker, MLflow, Weights & Biases, Apache Airflow, Spark / Databricks, CI/CD for ML
+- Languages & Data: Python, SQL, Bash, MATLAB, PostgreSQL, MongoDB, SQLite, Process Mining
+
+## Education
+- M.Sc. Computer Science (Big Data Analytics) — Central University of Rajasthan, Kishangarh, India (2018 – 2020)
+- Integrated B.Sc. B.Ed. (Physical Sciences & Education) — Regional Institute of Education (NCERT), Bhubaneswar, India (2014 – 2018)
+
+## Certifications
+- Agentic Knowledge Graph Construction — DeepLearning.AI × Neo4j (Aug 2025): https://learn.deeplearning.ai/accomplishments/47fc6775-2474-459c-823f-d9835dff4c92
+- Building AI Voice Agents for Production — DeepLearning.AI × LiveKit (Jul 2025): https://learn.deeplearning.ai/accomplishments/576a1433-07cf-43ed-b823-11a6833bcf7c
+- Neo4j Fundamentals — Neo4j GraphAcademy (Jul 2025): https://graphacademy.neo4j.com/c/cd58c648-ed44-4417-9432-45593d54d65f/
+- Pretraining LLMs — DeepLearning.AI × Upstage (Feb 2025): https://learn.deeplearning.ai/accomplishments/4e81d8a9-58e3-4e21-bf4c-eb6591b7057c
+- An Introduction to Practical Deep Learning — Intel · Coursera (2022): https://coursera.org/share/9fc0954c13722812bc98b54f03647fef
+- Technical Support Fundamentals — Google · Coursera (2021): https://www.coursera.org/account/accomplishments/verify/QT54W4QRL6HB
+- TensorFlow Developer Certificate — Coursera (Aug 2020): https://coursera.org/share/416c0c85f67457b5b242f15f63cd6814
+- Deep Learning Specialization — DeepLearning.AI · Coursera (Apr 2020): https://www.coursera.org/account/accomplishments/specialization/R3ZCXXTTVHS8
+
+## Writing
+- My Deathbed System Config — Medium: https://medium.com/@prady029/my-deathbed-system-config-ef10ada54a22
+- Breaking Google’s Hegemony in SmartPhones — Medium: https://medium.com/@prady029/breaking-googles-hegemony-in-smartphones-d74a8e1b4589
+- Fall-out of an ISI Interview — Medium: https://medium.com/@prady029/fall-out-of-an-isi-interview-40effc7886bc

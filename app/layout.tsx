@@ -3,45 +3,77 @@ import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Pradyumna Kumar Sahoo | Senior Data Scientist",
+  metadataBase: new URL("https://prady029.github.io"),
+  title: "Pradyumna Kumar Sahoo — Applied Data Scientist",
   description:
-    "Senior Data Scientist with 5+ years building production-grade AI/ML systems — GraphRAG, Medical AI, LLM Fine-tuning, GenAI, Agentic Systems, Computer Vision.",
+    "Applied Data Scientist with 5+ years of experience building production GraphRAG pipelines, fine-tuned clinical LLMs, multimodal voice agents, and computer vision systems.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   keywords: [
-    "Data Scientist",
-    "GenAI",
+    "Pradyumna Kumar Sahoo",
+    "Applied Data Scientist",
+    "Senior Data Scientist",
     "GraphRAG",
-    "LLM Fine-tuning",
     "Medical AI",
-    "Machine Learning",
-    "AI Engineer",
+    "Clinical Decision Support",
+    "LLM Fine-tuning",
+    "Model Context Protocol",
     "Agentic Systems",
     "Knowledge Graphs",
+    "Computer Vision",
   ],
-  authors: [{ name: "Pradyumna Kumar Sahoo" }],
+  authors: [{ name: "Pradyumna Kumar Sahoo", url: "https://prady029.github.io/" }],
+  creator: "Pradyumna Kumar Sahoo",
+  publisher: "Pradyumna Kumar Sahoo",
   openGraph: {
-    title: "Pradyumna Kumar Sahoo | Senior Data Scientist",
+    title: "Pradyumna Kumar Sahoo — Applied Data Scientist",
     description:
-      "Senior Data Scientist specializing in GenAI, GraphRAG, Medical AI, and Agentic Systems.",
-    url: "https://prady029.github.io",
+      "Production AI/ML across Healthcare and Enterprise Finance — GraphRAG, Clinical LLMs, Multimodal Voice Agents, and Computer Vision.",
+    url: "https://prady029.github.io/",
+    siteName: "Pradyumna Kumar Sahoo",
+    locale: "en_US",
     type: "profile",
     images: [
       {
         url: "https://avatars.githubusercontent.com/u/40775401?v=4",
-        width: 800,
-        height: 800,
+        width: 460,
+        height: 460,
         alt: "Pradyumna Kumar Sahoo",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Pradyumna Kumar Sahoo | Senior Data Scientist",
+    card: "summary",
+    title: "Pradyumna Kumar Sahoo — Applied Data Scientist",
     description:
-      "Senior Data Scientist specializing in GenAI, GraphRAG, Medical AI, and Agentic Systems.",
+      "Production AI/ML across Healthcare and Enterprise Finance — GraphRAG, Clinical LLMs, and Multimodal Systems.",
     creator: "@prady029",
     images: ["https://avatars.githubusercontent.com/u/40775401?v=4"],
   },
 };
+
+const themeInitScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = (stored === 'light' || stored === 'dark') ? stored : (prefersDark ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  } catch (e) {}
+})();
+`;
 
 export default function RootLayout({
   children,
@@ -49,21 +81,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preconnect to external origins used on this page */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+          rel="stylesheet"
+        />
         <link rel="preconnect" href="https://avatars.githubusercontent.com" crossOrigin="anonymous" />
         <link rel="icon" href="/avatar.jpg" type="image/jpeg" />
+        <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt" />
       </head>
-      <body
-        className="font-sans antialiased bg-[#030712] dark:bg-[#030712] text-slate-900 dark:text-white transition-colors duration-300"
-      >
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+      <body className="font-sans antialiased transition-colors duration-200">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

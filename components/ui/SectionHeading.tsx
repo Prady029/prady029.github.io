@@ -1,47 +1,34 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 interface SectionHeadingProps {
-  label: string;
+  index: string;
   title: string;
   subtitle?: string;
-  align?: "left" | "center";
+  headingId?: string;
 }
 
 export default function SectionHeading({
-  label,
+  index,
   title,
   subtitle,
-  align = "center",
+  headingId,
 }: SectionHeadingProps) {
-  const isCenter = align === "center";
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55 }}
-      className={`flex flex-col mb-14 ${isCenter ? "items-center text-center" : "items-start text-left"}`}
-    >
-      <span className="text-xs font-semibold tracking-[0.22em] uppercase text-cyan-400 mb-3">
-        {label}
-      </span>
-      <h2
-        className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight"
-        style={{ fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
-      >
-        {title}
-      </h2>
-      {subtitle && (
-        <p
-          className={`text-white/55 text-lg leading-relaxed ${isCenter ? "max-w-2xl" : "max-w-xl"}`}
+    <div className="mb-10 pb-5 border-b border-[var(--border)]">
+      <div className="flex items-baseline gap-3">
+        <span className="font-mono text-xs text-[var(--accent)] tabular-nums">
+          {index}
+        </span>
+        <h2
+          id={headingId}
+          className="font-editorial text-2xl sm:text-3xl font-medium tracking-tight text-[var(--text)]"
         >
+          {title}
+        </h2>
+      </div>
+      {subtitle && (
+        <p className="mt-2 text-sm sm:text-[15px] text-[var(--text-muted)] max-w-2xl leading-relaxed">
           {subtitle}
         </p>
       )}
-      <div className="mt-5 h-px w-14 bg-gradient-to-r from-cyan-400 to-violet-400 rounded-full" />
-    </motion.div>
+    </div>
   );
 }
