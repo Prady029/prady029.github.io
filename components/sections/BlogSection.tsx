@@ -16,7 +16,7 @@ export default function BlogSection() {
         <SectionHeading
           label="Writing"
           title="Latest Articles"
-          subtitle="Technical deep-dives into ML research, audio source separation, and multilingual NLP."
+          subtitle="Essays, technical notes, and reflections published on Medium."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

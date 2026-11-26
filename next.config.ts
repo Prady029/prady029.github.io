@@ -7,8 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "analyticsdrift.com",
-        pathname: "/wp-content/uploads/**",
+        hostname: "cdn-images-1.medium.com",
       },
       {
         protocol: "https",
