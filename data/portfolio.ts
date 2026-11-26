@@ -137,8 +137,8 @@ export interface ExperienceItem {
 
 export const experience: ExperienceItem[] = [
   {
-    title: "Data Scientist",
-    company: "Mondee Pvt. Ltd.",
+    title: "Applied Data Scientist",
+    company: "Pranik.ai (Mondee)",
     location: "Hyderabad, India",
     period: "Aug 2025 – Present",
     current: true,
