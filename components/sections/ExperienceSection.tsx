@@ -46,16 +46,21 @@ export default function ExperienceSection() {
               </h4>
 
               <ul className="space-y-2.5 mb-4">
-                {role.highlights.map((item, j) => (
+                {role.highlights.map((item) => (
                   <li
-                    key={j}
+                    key={item.label}
                     className="flex gap-3 text-sm text-[var(--text-secondary)] leading-relaxed"
                   >
                     <span
                       aria-hidden="true"
                       className="mt-[7px] w-1 h-1 rounded-full bg-[var(--border-strong)] shrink-0"
                     />
-                    <span>{item}</span>
+                    <span>
+                      <strong className="font-medium text-[var(--text)]">
+                        {item.label}:
+                      </strong>{" "}
+                      {item.text}
+                    </span>
                   </li>
                 ))}
               </ul>

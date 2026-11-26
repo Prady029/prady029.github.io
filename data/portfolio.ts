@@ -118,13 +118,18 @@ export const skills: SkillGroup[] = [
   },
 ];
 
+export interface ExperienceHighlight {
+  label: string;
+  text: string;
+}
+
 export interface ExperienceItem {
   title: string;
   company: string;
   location: string;
   period: string;
   current?: boolean;
-  highlights: string[];
+  highlights: ExperienceHighlight[];
   tags: string[];
 }
 
@@ -136,12 +141,24 @@ export const experience: ExperienceItem[] = [
     period: "Aug 2025 – Present",
     current: true,
     highlights: [
-      "Architected a medical-grade GraphRAG audio chatbot for a flagship Clinical Decision Support System (CDSS) deployed across Surekha Hospital Chain and BhaktiVedant Hospital, constructing structured Neo4j knowledge graphs from medical textbooks via NER to deliver traceable, hallucination-resistant clinical retrieval.",
-      "Engineered a drug–drug interaction checker and dosage scheduler served over Model Context Protocol (MCP), integrating live RxNorm and PubMed APIs for patient-specific conflict alerts inside clinical sessions.",
-      "Led end-to-end fine-tuning and vLLM serving of Medgemma-27b-text-it using Unsloth in collaboration with research scholars from IIT Madras and IIT Hyderabad.",
-      "Directed clinical STT/ASR dataset curation, SME annotation QA, and LoRA multimodal fine-tuning of gemma-3n-e2b-it with TGI serving for real-time clinical transcription and Doctor's Note generation.",
+      {
+        label: "Clinical Decision Support (GraphRAG)",
+        text: "Architected a GraphRAG audio chatbot enabling clinicians across Surekha Hospital Chain and BhaktiVedant Hospital to query alternative diagnoses and treatment paths; extracted structured medical entities (NER) into Neo4j and integrated retrieval via LangChain to eliminate unsupported answers through traceable source attribution.",
+      },
+      {
+        label: "Medication Safety Agent (MCP)",
+        text: "Developed an autonomous medication-safety agent integrated into the clinical chat interface; queried live RxNorm and PubMed data to detect drug–drug interactions, formulated patient-specific dosage regimens, and deployed the tool as an MCP service accessible to internal agent fleets.",
+      },
+      {
+        label: "Clinical LLM Fine-Tuning & Serving",
+        text: "Coordinated with researchers from IIT Madras and IIT Hyderabad on dataset curation, training, and evaluation to fine-tune MedGemma-27b-text-it using Unsloth; served the model via vLLM for high-throughput clinical NLP inference.",
+      },
+      {
+        label: "Clinical Voice Agent Pipeline",
+        text: "Spearheaded an end-to-end medical voice workflow by establishing live clinical audio collection, expert annotation, and quality control; fine-tuned gemma3n-e2b-it using LoRA and served it on TGI to transcribe consultations in real time and generate Doctor’s Notes.",
+      },
     ],
-    tags: ["GraphRAG", "Neo4j", "MCP", "MedGemma-27B", "Unsloth", "vLLM", "Clinical ASR"],
+    tags: ["GraphRAG", "Neo4j", "MCP", "MedGemma-27b-text-it", "Unsloth", "vLLM", "Clinical Voice AI"],
   },
   {
     title: "Senior Member Technical (AI/ML)",
@@ -149,12 +166,24 @@ export const experience: ExperienceItem[] = [
     location: "Hyderabad, India",
     period: "Dec 2023 – Jul 2025",
     highlights: [
-      "Designed and deployed a Knowledge-Graph RAG pipeline on AWS Neptune and Bedrock orchestrated with LangGraph to improve financial data accuracy — Runner-up, ADP Global Hackathon (2024).",
-      "Built an intelligent Process Mining Chatbot for Global Payroll Services with Databricks and Microsoft Power Automate, analysing transaction patterns to streamline workflows across an average of 73 payroll cycles per client.",
-      "Engineered an org-wide agentic assistant on Google ADK and AWS OpenSearch that drafts context-aware emails and schedules meetings from live calendars, saving ~24 hours per employee per month.",
-      "Deployed a fine-tuned YOLOv8 + OpenCV QR detection and masking pipeline alongside an IndicNLP + HuggingFace NER PII redaction system covering Aadhaar, PAN, and account identifiers across 10+ Indic scripts on millions of payroll documents.",
+      {
+        label: "Workplace Automation Assistant",
+        text: "Built an autonomous workplace assistant using Google ADK and AWS OpenSearch that generates context-aware emails and schedules meetings against live calendars directly within chat; saved approximately 24 hours per user monthly across company-wide rollout to all ADP employees.",
+      },
+      {
+        label: "Knowledge Graph-Grounded Financial RAG",
+        text: "Coupled RAG pipelines with an AWS Neptune knowledge graph and Amazon Bedrock using LangGraph to resolve ambiguous queries, increasing financial response accuracy, reducing hallucinations, and earning Runner-up at the 2024 ADP Global Hackathon.",
+      },
+      {
+        label: "Payroll Process Mining Chatbot",
+        text: "Implemented a process-mining conversational agent using Databricks and Power Automate over millions of client records, automatically identifying payment bottlenecks and resolving issues across an average of 73 payroll cycles per client.",
+      },
+      {
+        label: "Multilingual PII Redaction Pipeline",
+        text: "Fine-tuned Transformer and spaCy NER models across 10+ Indic scripts to identify and redact sensitive personal and financial identifiers (including tax IDs, national IDs, account numbers, and names) in payroll and HR documents to ensure regulatory compliance.",
+      },
     ],
-    tags: ["AWS Neptune", "Bedrock", "LangGraph", "Google ADK", "Databricks", "YOLOv8", "IndicNLP"],
+    tags: ["Google ADK", "AWS OpenSearch", "AWS Neptune", "Amazon Bedrock", "LangGraph", "Databricks", "Indic NER"],
   },
   {
     title: "Junior Data Scientist",
@@ -162,12 +191,20 @@ export const experience: ExperienceItem[] = [
     location: "Remote, India",
     period: "Jun 2021 – Dec 2023",
     highlights: [
-      "Built a Detectron2 + FastAPI instance segmentation pipeline for vehicle parts identification reaching 95% mAP (+26% assessment throughput), paired with GradCAM++ visualisations for regulatory auditability.",
-      "Engineered an automated MLflow inference drift and failure-tracing pipeline, cutting manual root-cause diagnosis time by 30%.",
-      "Deployed a SWIN2SR + NAFNet super-resolution and denoising ensemble on compressed field imagery, reducing model failures by 16% and lifting downstream accuracy by 12%.",
-      "Built confidence-based label auditing in Scikit-learn (saving 6 man-hours/engineer/sprint), trained PyTorch GANs for rare-class augmentation, designed zero-shot OpenCV polygon flat-tyre detection, and improved damage severity classification by 3% per class via a CNN + XGBoost fusion ensemble.",
+      {
+        label: "Automated Vehicle Damage Segmentation",
+        text: "Engineered a vehicle-part segmentation pipeline using Detectron2 served via FastAPI, achieving 95% mAP and reducing damage assessment turnaround by 26%; integrated GradCAM++ heatmaps to provide transparent model interpretability for claims reviewers.",
+      },
+      {
+        label: "Inference Monitoring & Root-Cause Tracing",
+        text: "Built an MLflow-based inference monitoring system tracking test-time feature distributions, reducing model diagnosis and root-cause analysis time by 30%.",
+      },
+      {
+        label: "Super-Resolution Image Preprocessing",
+        text: "Mitigated production errors from compressed and low-quality photos by integrating a SWIN2SR and NAFNet super-resolution and denoising ensemble, reducing model failures by 16% and improving downstream task accuracy by 12%.",
+      },
     ],
-    tags: ["Detectron2", "FastAPI", "GradCAM++", "MLflow", "SWIN2SR", "PyTorch GANs", "XGBoost"],
+    tags: ["Detectron2", "FastAPI", "GradCAM++", "MLflow", "SWIN2SR", "NAFNet"],
   },
 ];
 

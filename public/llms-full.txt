@@ -24,22 +24,21 @@ Pradyumna Kumar Sahoo is an Applied Data Scientist with 5+ years of experience b
 ## Professional Experience
 
 ### Data Scientist — Mondee Pvt. Ltd. (Aug 2025 – Present · Hyderabad, India)
-- Architected a medical-grade GraphRAG audio chatbot for a flagship Clinical Decision Support System (CDSS) deployed across Surekha Hospital Chain and BhaktiVedant Hospital, constructing structured Neo4j knowledge graphs from medical textbooks via NER to deliver traceable, hallucination-resistant clinical retrieval via LangChain.
-- Engineered a drug–drug interaction checker and dosage scheduler served through a Model Context Protocol (MCP) interface, integrating live RxNorm and PubMed APIs for patient-specific conflict alerts inside clinical chat sessions.
-- Led end-to-end fine-tuning and vLLM serving of `Medgemma-27b-text-it` for clinical NLP tasks using Unsloth in collaboration with research scholars from IIT Madras and IIT Hyderabad.
-- Directed clinical STT/ASR data curation, Subject Matter Expert annotation QA, and LoRA multimodal fine-tuning of `gemma-3n-e2b-it` with TGI serving for real-time clinical transcription and Doctor's Note generation.
+- Clinical Decision Support (GraphRAG): Architected a GraphRAG audio chatbot enabling clinicians across Surekha Hospital Chain and BhaktiVedant Hospital to query alternative diagnoses and treatment paths; extracted structured medical entities (NER) into Neo4j and integrated retrieval via LangChain to eliminate unsupported answers through traceable source attribution.
+- Medication Safety Agent (MCP): Developed an autonomous medication-safety agent integrated into the clinical chat interface; queried live RxNorm and PubMed data to detect drug–drug interactions, formulated patient-specific dosage regimens, and deployed the tool as an MCP service accessible to internal agent fleets.
+- Clinical LLM Fine-Tuning & Serving: Coordinated with researchers from IIT Madras and IIT Hyderabad on dataset curation, training, and evaluation to fine-tune MedGemma-27b-text-it using Unsloth; served the model via vLLM for high-throughput clinical NLP inference.
+- Clinical Voice Agent Pipeline: Spearheaded an end-to-end medical voice workflow by establishing live clinical audio collection, expert annotation, and quality control; fine-tuned gemma3n-e2b-it using LoRA and served it on TGI to transcribe consultations in real time and generate Doctor’s Notes.
 
 ### Senior Member Technical (AI/ML) — ADP India Pvt. Ltd. (Dec 2023 – Jul 2025 · Hyderabad, India)
-- Designed and deployed a Knowledge-Graph RAG pipeline on AWS Neptune and AWS Bedrock orchestrated via LangGraph to improve financial data accuracy (Runner-up, ADP Global Hackathon 2024).
-- Built an intelligent Process Mining Chatbot for Global Payroll Services using Microsoft Power Automate and Databricks, analyzing transaction patterns across millions of client records to optimize workflows across an average of 73 payroll cycles per client.
-- Engineered an org-wide agentic assistant on Google Agent Development Kit (ADK) and AWS OpenSearch that drafts context-aware emails and schedules meetings from live calendars, saving ~24 hours per employee per month across all ADP employees.
-- Deployed a fine-tuned YOLOv8 + OpenCV QR detection, decoding, and masking pipeline alongside an IndicNLP + HuggingFace NER PII redaction system covering Aadhaar, PAN, and account identifiers across 10+ Indic scripts on millions of payroll documents.
+- Workplace Automation Assistant: Built an autonomous workplace assistant using Google ADK and AWS OpenSearch that generates context-aware emails and schedules meetings against live calendars directly within chat; saved approximately 24 hours per user monthly across company-wide rollout to all ADP employees.
+- Knowledge Graph-Grounded Financial RAG: Coupled RAG pipelines with an AWS Neptune knowledge graph and Amazon Bedrock using LangGraph to resolve ambiguous queries, increasing financial response accuracy, reducing hallucinations, and earning Runner-up at the 2024 ADP Global Hackathon.
+- Payroll Process Mining Chatbot: Implemented a process-mining conversational agent using Databricks and Power Automate over millions of client records, automatically identifying payment bottlenecks and resolving issues across an average of 73 payroll cycles per client.
+- Multilingual PII Redaction Pipeline: Fine-tuned Transformer and spaCy NER models across 10+ Indic scripts to identify and redact sensitive personal and financial identifiers (including tax IDs, national IDs, account numbers, and names) in payroll and HR documents to ensure regulatory compliance.
 
 ### Junior Data Scientist — Claim Genius Pvt. Ltd. (Jun 2021 – Dec 2023 · Remote, India)
-- Built a Detectron2 + FastAPI instance segmentation pipeline for vehicle parts identification reaching 95% mAP (+26% assessment throughput), paired with GradCAM++ visualisations for regulatory auditability.
-- Engineered an automated MLflow inference drift and failure-tracing pipeline, cutting manual root-cause diagnosis time by 30%.
-- Deployed a SWIN2SR + NAFNet super-resolution and denoising ensemble on compressed field imagery, reducing model failures by 16% and lifting downstream accuracy by 12%.
-- Built confidence-based label auditing in Scikit-learn (saving 6 man-hours per engineer per sprint), trained PyTorch GANs for rare-class synthetic image augmentation, designed zero-shot OpenCV polygon flat-tyre detection, and boosted damage severity classification by 3% per class via a PyTorch CNN + XGBoost fusion ensemble.
+- Automated Vehicle Damage Segmentation: Engineered a vehicle-part segmentation pipeline using Detectron2 served via FastAPI, achieving 95% mAP and reducing damage assessment turnaround by 26%; integrated GradCAM++ heatmaps to provide transparent model interpretability for claims reviewers.
+- Inference Monitoring & Root-Cause Tracing: Built an MLflow-based inference monitoring system tracking test-time feature distributions, reducing model diagnosis and root-cause analysis time by 30%.
+- Super-Resolution Image Preprocessing: Mitigated production errors from compressed and low-quality photos by integrating a SWIN2SR and NAFNet super-resolution and denoising ensemble, reducing model failures by 16% and improving downstream task accuracy by 12%.
 
 ## Selected Open-Source Projects & Research
 1. Music Visualiser — Live browser speaker & tab Web Audio visualiser with 14 HiDPI Canvas 2D modes, cymatics physics, 29 perceptual OKLab themes, and a macOS terminal CLI (1st place house-party vibe-coding winner).
