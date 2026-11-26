@@ -1,3 +1,5 @@
+import { localLlmLaptopCpuSeries } from "@/data/writing/localLlmLaptopCpu";
+
 export const personalInfo = {
   name: "Pradyumna Kumar Sahoo",
   shortName: "Pradyumna K. Sahoo",
@@ -393,7 +395,7 @@ export interface BlogItem {
   slug: string;
   title: string;
   subTitle: string;
-  kind: "Paper Deep Dive" | "Essay";
+  kind: "Paper Deep Dive" | "Essay" | "Field Notes";
   publishedAt: string;
   publishedLabel: string;
   readingTime: string;
@@ -404,6 +406,7 @@ export interface BlogItem {
 }
 
 export const blogs: BlogItem[] = [
+  ...localLlmLaptopCpuSeries,
   {
     slug: "llsf-dl-mlsmote-hybrid-feynman-guide",
     title: "Solving Tail Labels with LLSF-DL + MLSMOTE: A Feynman Guide",

@@ -207,6 +207,15 @@ html.dark {
   text-align: center;
 }
 
+.article-prose .table-scroll {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.article-prose .table-scroll table {
+  margin: 0;
+}
+
 .article-prose table {
   width: 100%;
   border-collapse: collapse;
