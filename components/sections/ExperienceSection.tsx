@@ -9,7 +9,6 @@ export default function ExperienceSection() {
       className="py-8 sm:py-10"
     >
       <SectionHeading
-        index="01"
         headingId="experience-heading"
         title="Experience"
         subtitle="5+ years shipping clinical and enterprise AI/ML systems from research prototypes to production."

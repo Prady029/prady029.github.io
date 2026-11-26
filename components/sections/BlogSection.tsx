@@ -10,7 +10,6 @@ export default function BlogSection() {
       className="py-8 sm:py-10"
     >
       <SectionHeading
-        index="04"
         headingId="blog-heading"
         title="Writing"
         subtitle="Articles, technical notes, and reflections hosted on this site."

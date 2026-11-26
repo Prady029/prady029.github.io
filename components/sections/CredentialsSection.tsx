@@ -9,7 +9,6 @@ export default function CredentialsSection() {
       className="py-8 sm:py-10"
     >
       <SectionHeading
-        index="05"
         headingId="credentials-heading"
         title="Education & Certifications"
         subtitle="Academic foundation in Big Data Analytics and verified credentials in Knowledge Graphs, Voice AI, and LLMs."

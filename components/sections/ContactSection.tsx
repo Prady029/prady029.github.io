@@ -33,7 +33,6 @@ export default function ContactSection() {
       className="pt-8 pb-12 sm:pt-10 sm:pb-14"
     >
       <SectionHeading
-        index="06"
         headingId="contact-heading"
         title="Contact"
         subtitle="Open to Senior Applied Data Scientist roles, GenAI architecture, and research collaborations."

@@ -12,7 +12,6 @@ export default function ProjectsSection() {
       className="py-8 sm:py-10"
     >
       <SectionHeading
-        index="03"
         headingId="projects-heading"
         title="Selected Work & Research"
         subtitle="Open-source implementations, thesis research in imbalanced multi-label learning, and interactive builds."
