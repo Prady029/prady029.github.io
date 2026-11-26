@@ -24,7 +24,7 @@ export const personalInfo = {
 };
 
 export const stats = [
-  { value: "5", label: "Years Experience" },
+  { value: "5+", label: "Years Experience" },
   { value: "16+", label: "Projects Built" },
   { value: "2", label: "IIT Collaborations" },
 ];
@@ -124,7 +124,7 @@ export const skills = [
       "AWS Bedrock",
       "AWS Neptune",
       "AWS S3 / Lambda / EC2",
-      "AWS Opensearch",
+      "AWS OpenSearch",
       "GCP Vertex AI",
       "Azure ML",
       "PostgreSQL",
@@ -161,7 +161,7 @@ export const experience = [
     highlights: [
       "Designed and deployed a Knowledge-Graph based RAG pipeline on AWS Neptune & Bedrock orchestrated via LangGraph, enhancing financial data processing accuracy and minimising AI hallucinations — recognised as runner-up in the ADP Global Hackathon (2024).",
       "Developed an intelligent Process Mining Chatbot for Global Payroll Services using Microsoft Power Automate and Databricks to analyse transaction patterns across millions of client records, optimising payment workflows across 73 payroll cycles per client on average.",
-      "Engineered an agentic assistant built on Google Agent Development Kit and AWS Opensearch that drafts context-aware emails and schedules meetings in real-time by checking live calendars, saving equivalent to 24 hours per user per month — currently rolled out across all ADP employees.",
+      "Engineered an agentic assistant built on Google Agent Development Kit and AWS OpenSearch that drafts context-aware emails and schedules meetings in real-time by checking live calendars, saving equivalent to 24 hours per user per month — currently rolled out across all ADP employees.",
       "Built a scalable QR code detection, decoding, and masking pipeline with a fine-tuned YOLOv8 for multi-orientation detection and OpenCV for automated region masking, sanitising financial documents prior to downstream processing at scale across millions of payroll documents.",
       "Developed an Indic PII detection and redaction system for financial regulatory compliance using fine-tuned NER models via HuggingFace Transformers and SpaCy with IndicNLP, identifying sensitive entities — Aadhaar, PAN, account numbers, names across 10+ Indic scripts — from payroll and HR documents.",
     ],
@@ -260,14 +260,28 @@ export const education = [
   },
 ];
 
-export const projects = [
+export interface ProjectItem {
+  name: string;
+  description: string;
+  language: string;
+  stars: number;
+  url: string;
+  liveUrl?: string;
+  badge?: string;
+  tags: string[];
+  emoji: string;
+}
+
+export const projects: ProjectItem[] = [
   {
     name: "Music Visualiser",
     description:
       "1st-place house-party vibe-coding winner — real-time in-browser speaker & tab audio visualizer with 14 Canvas 2D modes, cymatics physics, and 29 perceptual OKLab themes.",
     language: "JavaScript",
     stars: 0,
-    url: "https://prady029.github.io/Music_Visualiser/",
+    url: "https://github.com/Prady029/Music_Visualiser",
+    liveUrl: "https://prady029.github.io/Music_Visualiser/",
+    badge: "Live App · 1st Place",
     tags: ["Web Audio", "Canvas 2D", "OKLab", "Live App"],
     emoji: "🎵",
   },
@@ -365,7 +379,7 @@ const blogSource = [
   { slug: "linguistic-analysis-of-machine-translations", title: "Measuring Weirdness In AI-Based Language-Translations", url: "https://analyticsdrift.com/linguistic-analysis-of-machine-translations/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/machine-translation-linguistic-analysis-300x169.jpg", sub_title: "AI-based language translations were the object of ridicule when they coughed up something funny..." },
   { slug: "google-interpretable-ranking-gams", title: "Google Introduces Interpretable Ranking Via Generative Additive Models", url: "https://analyticsdrift.com/google-interpretable-ranking-gams/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/google-interpretable-ranking-GAMs-300x169.jpg", sub_title: "We are building more and more complex AI models day by day to get our predictions right..." },
   { slug: "microsofts-gooseberry-treat-for-quantum-computing", title: "Microsoft\u2019s Gooseberry Treat For Quantum Computing", url: "https://analyticsdrift.com/microsofts-gooseberry-treat-for-quantum-computing/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/Microsoft-Gooseberry-Quantum-Chip--300x169.jpg", sub_title: "In collaboration with the University of Sydney, Microsoft has built a cryogenic quantum controller chip - Gooseberry for controlling thousands of qubits..." },
-  { slug: "the-facebook-muppet-show", title: "The Facebook MUPPET  Show", url: "https://analyticsdrift.com/the-facebook-muppet-show/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/Facebook-Muppet-pre-fine-tuning-300x169.jpg", sub_title: "Facebook researchers have scaled up a relevantly new technique, Pre-finetuning (PFT), in their paper MUPPET to multi-task learning of over 50 tasks on a vast scale, i.e., 4.8 million instanc.." },
+  { slug: "the-facebook-muppet-show", title: "The Facebook MUPPET Show", url: "https://analyticsdrift.com/the-facebook-muppet-show/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/Facebook-Muppet-pre-fine-tuning-300x169.jpg", sub_title: "Facebook researchers have scaled up a relevantly new technique, Pre-finetuning (PFT), in their paper MUPPET to multi-task learning of over 50 tasks on a vast scale, i.e., 4.8 million instanc.." },
   { slug: "data-labeling-and-the-hidden-costs-in-machine-learning", title: "Data Labeling And The Hidden Costs In Machine Learning", url: "https://analyticsdrift.com/data-labeling-and-the-hidden-costs-in-machine-learning/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/data-labeling-hidden-cost-300x169.jpg", sub_title: "The most challenging part of machine learning is data cleaning because, on average, it takes 70% of the allotted time for a project..." },
   { slug: "what-is-liquid-machine-learning", title: "What Is Liquid Machine Learning?", url: "https://analyticsdrift.com/what-is-liquid-machine-learning/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/02/liquid-machine-learning-300x169.jpg", sub_title: "Let us imagine for a minute the most beautiful moments of our lives? How do you mentally visualize those memories? Let us look at our surroundings..." },
   { slug: "facebooks-single-model-xlsr-for-speech-recognition-in-53-languages", title: "Facebook\u2019s Single Model XLSR For Speech Recognition In 53 Languages.", url: "https://analyticsdrift.com/facebooks-single-model-xlsr-for-speech-recognition-in-53-languages/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/XLSR-53-300x169.jpg", sub_title: "Facebook AI researchers recently open-sourced their unsupervised cross-lingual speech recognition model, XLSR, that can handle 53 languages at a time..." },
@@ -386,15 +400,15 @@ const blogSource = [
   { slug: "av-map-from-short-video-to-the-entire-floor-plan-using-ml", title: "AV-MAP: From Short Video To The Entire Floor Plan Using ML", url: "https://analyticsdrift.com/av-map-from-short-video-to-the-entire-floor-plan-using-ml/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/AV-MAP_predicts_floorplan-300x169.jpg", sub_title: "Researchers from Facebook AI and other universities have developed a framework, AV-MAP, that can infer rooms\u2019 general layout from a house\u2019s short-clip..." },
   { slug: "amazon-web-services-aws-is-hosting-a-free-ai-conclave", title: "Amazon Web Services (AWS) Is Hosting A Free AI Conclave", url: "https://analyticsdrift.com/amazon-web-services-aws-is-hosting-a-free-ai-conclave/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/AWS-AI-Conclave-300x169.jpg", sub_title: "AWS will host a two-day free AI online conclave on 28 and 29 January. The conclave is power-packed with 20+ breakout sessions by Amazon and industry experts..." },
   { slug: "microsoft-is-hosting-free-virtual-workshop-on-reinforcement-learning-day-providing-job-opportunity-at-its-research-labs", title: "Microsoft Is Hosting Free Virtual Workshop On Reinforcement Learning Day, Providing Job Opportunity At Its Research Labs", url: "https://analyticsdrift.com/microsoft-is-hosting-free-virtual-workshop-on-reinforcement-learning-day-providing-job-opportunity-at-its-research-labs/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Reinforcement-Learning-Day-2021-Microsoft-Virtual-Workshop-300x169.jpg", sub_title: "Microsoft Research will be observing Reinforcement learning day on 14th January 2021..." },
-  { slug: "optical-chips-paves-the-way-for-faster-machine-learning", title: "Optical Chips Paves The Way For Faster Machine Learning", url: "https://analyticsdrift.com/optical-chips-paves-the-way-for-faster-machine-learning/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Optical-Chips-300x169.jpg", sub_title: "Silicon transistors, the basic unit of the silicon processors, can not be shrunk further without&nbsp;avoiding quantum-mechanical effects..." },
+  { slug: "optical-chips-paves-the-way-for-faster-machine-learning", title: "Optical Chips Paves The Way For Faster Machine Learning", url: "https://analyticsdrift.com/optical-chips-paves-the-way-for-faster-machine-learning/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Optical-Chips-300x169.jpg", sub_title: "Silicon transistors, the basic unit of the silicon processors, can not be shrunk further without avoiding quantum-mechanical effects..." },
   { slug: "microsofts-deberta-surpasses-humans-on-natural-language-understanding", title: "Microsoft\u2019s DeBERTa Surpasses Humans On Natural Language Understanding", url: "https://analyticsdrift.com/microsofts-deberta-surpasses-humans-on-natural-language-understanding/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Microsoft-DeBERTa-300x169.jpg", sub_title: "Microsoft\u2019s DeBERTa (Decoding-enhanced BERT with disentangled attention) has surpassed the natural language understanding baseline set at par with human performance in the SuperGlue benchmar.." },
-  { slug: "uber-ai-says-you-can-increase-task-completion-if-you-are-polite-with-virtual-agents", title: "Uber AI Says You Can Increase Task Completion If You Are Polite With Virtual Agents", url: "https://analyticsdrift.com/uber-ai-says-you-can-increase-task-completion-if-you-are-polite-with-virtual-agents/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Uber-AI-300x169.jpg", sub_title: "The Uber AI researchers&nbsp;published&nbsp;an overview of a deep learning framework addressing customer engagement with \u2018polite and positive\u2019 assistants..." },
-  { slug: "iisc-invites-for-its-new-deep-learning-specialisation", title: "IIsc Invites For Its New Deep Learning Specialisation", url: "https://analyticsdrift.com/iisc-invites-for-its-new-deep-learning-specialisation/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Deep-Learning-Specialisation-IISC-300x169.jpg", sub_title: "Indian Institute of Science (IISc), currently the best university in India, has&nbsp;announced&nbsp;a masters\u2019 level deep learning specialization in tie-up with TalentSprint..." },
-  { slug: "facebook-releases-code-of-its-state-of-the-art-voice-separation-model", title: "Facebook Releases Code Of Its State-Of-The-Art Voice Separation Model", url: "https://analyticsdrift.com/facebook-releases-code-of-its-state-of-the-art-voice-separation-model/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Facebook-Voice-Seperation-Model-300x169.jpg", sub_title: "Facebook researchers&nbsp;open-sourced code&nbsp;of their&nbsp;work, \u201cVoice Separation with an Unknown Number of Multiple Speakers.\u201d Suppose, there is only one mic and there are multiple spe.." },
-  { slug: "intels-realsense-id-now-offers-facial-recognition-with-higher-accuracy", title: "Intel\u2019s RealSense ID Now Offers Facial Recognition With Higher Accuracy", url: "https://analyticsdrift.com/intels-realsense-id-now-offers-facial-recognition-with-higher-accuracy/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Intel-RealSense-300x188.jpg", sub_title: "Intel is now&nbsp;offering&nbsp;RealSense technology to customers for facial recognition under the purview of RealSense ID..." },
-  { slug: "openais-dall%c2%b7e-can-create-images-from-text", title: "OpenAI\u2019s DALL\u00b7E Can Create Images From Text", url: "https://analyticsdrift.com/openais-dall%c2%b7e-can-create-images-from-text/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/OpenAI-Dalle-300x169.jpg", sub_title: "OpenAI created a multimodal generative neural model -- DALL\u00b7E -- that can create images from text prompts given as input.&nbsp; This neural network uses the 12-billion GPT-3 parameter versio.." },
+  { slug: "uber-ai-says-you-can-increase-task-completion-if-you-are-polite-with-virtual-agents", title: "Uber AI Says You Can Increase Task Completion If You Are Polite With Virtual Agents", url: "https://analyticsdrift.com/uber-ai-says-you-can-increase-task-completion-if-you-are-polite-with-virtual-agents/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Uber-AI-300x169.jpg", sub_title: "The Uber AI researchers published an overview of a deep learning framework addressing customer engagement with \u2018polite and positive\u2019 assistants..." },
+  { slug: "iisc-invites-for-its-new-deep-learning-specialisation", title: "IIsc Invites For Its New Deep Learning Specialisation", url: "https://analyticsdrift.com/iisc-invites-for-its-new-deep-learning-specialisation/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Deep-Learning-Specialisation-IISC-300x169.jpg", sub_title: "Indian Institute of Science (IISc), currently the best university in India, has announced a masters\u2019 level deep learning specialization in tie-up with TalentSprint..." },
+  { slug: "facebook-releases-code-of-its-state-of-the-art-voice-separation-model", title: "Facebook Releases Code Of Its State-Of-The-Art Voice Separation Model", url: "https://analyticsdrift.com/facebook-releases-code-of-its-state-of-the-art-voice-separation-model/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Facebook-Voice-Seperation-Model-300x169.jpg", sub_title: "Facebook researchers open-sourced code of their work, \u201cVoice Separation with an Unknown Number of Multiple Speakers.\u201d Suppose, there is only one mic and there are multiple spe.." },
+  { slug: "intels-realsense-id-now-offers-facial-recognition-with-higher-accuracy", title: "Intel\u2019s RealSense ID Now Offers Facial Recognition With Higher Accuracy", url: "https://analyticsdrift.com/intels-realsense-id-now-offers-facial-recognition-with-higher-accuracy/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Intel-RealSense-300x188.jpg", sub_title: "Intel is now offering RealSense technology to customers for facial recognition under the purview of RealSense ID..." },
+  { slug: "openais-dall%c2%b7e-can-create-images-from-text", title: "OpenAI\u2019s DALL\u00b7E Can Create Images From Text", url: "https://analyticsdrift.com/openais-dall%c2%b7e-can-create-images-from-text/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/OpenAI-Dalle-300x169.jpg", sub_title: "OpenAI created a multimodal generative neural model -- DALL\u00b7E -- that can create images from text prompts given as input.  This neural network uses the 12-billion GPT-3 parameter versio.." },
   { slug: "clip-from-openai-recognizes-images-from-their-captions", title: "CLIP From OpenAI Recognizes Images From Their Captions", url: "https://analyticsdrift.com/clip-from-openai-recognizes-images-from-their-captions/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/OpenAI-Clip-300x214.jpg", sub_title: "OpenAI\u2019s Contrastive Language\u2013Image Pre-training (CLIP) learns image representation from associated natural language..." },
-  { slug: "computer-vision-has-a-new-deit-by-facebook", title: "Computer Vision Has A New DeIT By Facebook", url: "https://analyticsdrift.com/computer-vision-has-a-new-deit-by-facebook/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Facebook-DiET-300x169.jpg", sub_title: "Facebook AI&nbsp;introduces DeIT&nbsp;(Data-efficient Image Transformer), a Transformer-based approach to train computer vision models..." },
+  { slug: "computer-vision-has-a-new-deit-by-facebook", title: "Computer Vision Has A New DeIT By Facebook", url: "https://analyticsdrift.com/computer-vision-has-a-new-deit-by-facebook/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/Facebook-DiET-300x169.jpg", sub_title: "Facebook AI introduces DeIT (Data-efficient Image Transformer), a Transformer-based approach to train computer vision models..." },
   { slug: "openmined-in-collaboration-with-pytorch-introduces-a-free-course-of-its-the-privacy-ai-series", title: "OpenMined, In Collaboration With PyTorch, Introduces A Free Course Of \u201cThe Privacy AI Series\u201d", url: "https://analyticsdrift.com/openmined-in-collaboration-with-pytorch-introduces-a-free-course-of-its-the-privacy-ai-series/", image_url: "https://analyticsdrift.com/wp-content/uploads/2021/01/OpenMined-300x169.jpg", sub_title: "OpenMined has released a course to train next-generation machine learning enthusiasts and practitioners to process sensitive data without breaching privacy..." },
 ];
 
