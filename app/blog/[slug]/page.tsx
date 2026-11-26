@@ -58,7 +58,8 @@ export default async function BlogPostPage({
     datePublished: post.publishedAt,
     url: postUrl,
     mainEntityOfPage: postUrl,
-    sameAs: post.mediumUrl,
+    ...(post.mediumUrl ? { sameAs: post.mediumUrl } : {}),
+    ...(post.repoUrl ? { isBasedOn: post.repoUrl } : {}),
     keywords: post.tags.join(", "),
     author: {
       "@type": "Person",
@@ -127,21 +128,38 @@ export default async function BlogPostPage({
           />
 
           <footer className="mt-12 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <p className="text-sm text-[var(--text-muted)]">
-              Available on Medium too:{" "}
-              <a
-                href={post.mediumUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs text-[var(--accent)] hover:underline underline-offset-4"
-              >
-                Read on Medium ↗
-              </a>
-            </p>
+            <div className="space-y-1 text-sm text-[var(--text-muted)]">
+              {post.mediumUrl && (
+                <p>
+                  Available on Medium too:{" "}
+                  <a
+                    href={post.mediumUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs text-[var(--accent)] hover:underline underline-offset-4"
+                  >
+                    Read on Medium ↗
+                  </a>
+                </p>
+              )}
+              {post.repoUrl && (
+                <p>
+                  Full code &amp; implementation:{" "}
+                  <a
+                    href={post.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs text-[var(--accent)] hover:underline underline-offset-4"
+                  >
+                    View repository on GitHub ↗
+                  </a>
+                </p>
+              )}
+            </div>
 
             <Link
               href="/blog/"
-              className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+              className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text)] transition-colors shrink-0"
             >
               ← More writing
             </Link>

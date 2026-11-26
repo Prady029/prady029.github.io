@@ -84,6 +84,9 @@ Pradyumna Kumar Sahoo is an Applied Data Scientist with 5+ years of experience b
 - Deep Learning Specialization — DeepLearning.AI · Coursera (Apr 2020): https://www.coursera.org/account/accomplishments/specialization/R3ZCXXTTVHS8
 
 ## Writing
+- Solving Tail Labels with LLSF-DL + MLSMOTE: A Feynman Guide (Nov 26, 2026): https://prady029.github.io/blog/llsf-dl-mlsmote-hybrid-feynman-guide/ (Code: https://github.com/Prady029/LLSF_DL-MLSMOTE-Hybrid-for-handling-tail-labels)
+- LLSF Explained Simply: Letting Labels Share Hints While Picking Their Own Clues (Nov 26, 2026): https://prady029.github.io/blog/llsf-learning-label-specific-features-feynman-guide/ (Code: https://github.com/Prady029/LLSF-Learning-Label-Specific-Features-for-Multi-Label-Classifcation)
+- LIFT Explained Simply: Measuring Distance to Positive and Negative Neighborhoods (Nov 26, 2026): https://prady029.github.io/blog/lift-label-specific-features-feynman-guide/ (Code: https://github.com/Prady029/LIFT-MultiLabel-Learning-with-Label-Specific-Features)
 - My Deathbed System Config (Nov 4, 2023): https://prady029.github.io/blog/my-deathbed-system-config/ (Available on Medium too: https://medium.com/@prady029/my-deathbed-system-config-ef10ada54a22)
 - Breaking Google’s Hegemony in SmartPhones… (Oct 9, 2020): https://prady029.github.io/blog/breaking-googles-hegemony-in-smartphones/ (Available on Medium too: https://medium.com/@prady029/breaking-googles-hegemony-in-smartphones-d74a8e1b4589)
 - Fall-out of an ISI Interview.. (Sep 16, 2020): https://prady029.github.io/blog/fall-out-of-an-isi-interview/ (Available on Medium too: https://medium.com/@prady029/fall-out-of-an-isi-interview-40effc7886bc)

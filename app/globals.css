@@ -178,6 +178,16 @@ html.dark {
   color: var(--text);
 }
 
+.article-prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background-color: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.35rem;
+  color: var(--text);
+}
+
 .article-prose figure {
   margin: 1.75rem 0;
 }

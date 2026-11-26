@@ -24,6 +24,11 @@ export default function BlogSection() {
               className="group py-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-8"
             >
               <div className="max-w-2xl">
+                <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)] mb-1">
+                  <span className="text-[var(--accent)]">{post.kind}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{post.readingTime}</span>
+                </div>
                 <h3 className="text-base font-medium text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
                   {post.title}
                 </h3>

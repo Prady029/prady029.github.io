@@ -47,6 +47,8 @@ export default function BlogIndexPage() {
               >
                 <div className="max-w-2xl">
                   <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] text-[var(--text-muted)] mb-1.5">
+                    <span className="text-[var(--accent)]">{post.kind}</span>
+                    <span aria-hidden="true">·</span>
                     <time dateTime={post.publishedAt}>{post.publishedLabel}</time>
                     <span aria-hidden="true">·</span>
                     <span>{post.readingTime}</span>
