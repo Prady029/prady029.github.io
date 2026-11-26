@@ -7,6 +7,30 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://prady029.github.io/blog/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://prady029.github.io/blog/my-deathbed-system-config/</loc>
+    <lastmod>2023-11-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prady029.github.io/blog/breaking-googles-hegemony-in-smartphones/</loc>
+    <lastmod>2020-10-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prady029.github.io/blog/fall-out-of-an-isi-interview/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://prady029.github.io/Pradyumna_Data_Scientist_AI_ML_5YoE.pdf</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>

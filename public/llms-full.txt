@@ -84,6 +84,6 @@ Pradyumna Kumar Sahoo is an Applied Data Scientist with 5+ years of experience b
 - Deep Learning Specialization — DeepLearning.AI · Coursera (Apr 2020): https://www.coursera.org/account/accomplishments/specialization/R3ZCXXTTVHS8
 
 ## Writing
-- My Deathbed System Config — Medium: https://medium.com/@prady029/my-deathbed-system-config-ef10ada54a22
-- Breaking Google’s Hegemony in SmartPhones — Medium: https://medium.com/@prady029/breaking-googles-hegemony-in-smartphones-d74a8e1b4589
-- Fall-out of an ISI Interview — Medium: https://medium.com/@prady029/fall-out-of-an-isi-interview-40effc7886bc
+- My Deathbed System Config (Nov 4, 2023): https://prady029.github.io/blog/my-deathbed-system-config/ (Available on Medium too: https://medium.com/@prady029/my-deathbed-system-config-ef10ada54a22)
+- Breaking Google’s Hegemony in SmartPhones… (Oct 9, 2020): https://prady029.github.io/blog/breaking-googles-hegemony-in-smartphones/ (Available on Medium too: https://medium.com/@prady029/breaking-googles-hegemony-in-smartphones-d74a8e1b4589)
+- Fall-out of an ISI Interview.. (Sep 16, 2020): https://prady029.github.io/blog/fall-out-of-an-isi-interview/ (Available on Medium too: https://medium.com/@prady029/fall-out-of-an-isi-interview-40effc7886bc)

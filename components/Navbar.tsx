@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { personalInfo } from "@/data/portfolio";
 import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
-  { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#projects" },
-  { label: "Stack", href: "#skills" },
-  { label: "Writing", href: "#blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Work", href: "/#projects" },
+  { label: "Stack", href: "/#skills" },
+  { label: "Writing", href: "/blog/" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 function ThemeIcon({ theme }: { theme: "dark" | "light" }) {
@@ -55,22 +56,22 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-editorial mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="text-sm font-medium tracking-tight text-[var(--text)] hover:text-[var(--accent)] transition-colors"
         >
           Pradyumna K. Sahoo
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-6" aria-label="Primary">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-[13px] font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -116,14 +117,14 @@ export default function Navbar() {
         <div className="md:hidden border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur-md">
           <div className="max-w-editorial mx-auto px-5 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className="py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text)]"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <a
               href={personalInfo.resume}

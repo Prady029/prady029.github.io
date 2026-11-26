@@ -109,20 +109,20 @@ export default function StructuredData() {
       {
         "@type": "ItemList",
         "@id": `${SITE_URL}/#writing`,
-        name: "Articles & Essays",
+        name: "Writing & Blog Posts",
         itemListElement: blogs.map((post, index) => ({
           "@type": "ListItem",
           position: index + 1,
           item: {
-            "@type": "Article",
+            "@type": "BlogPosting",
             headline: post.title,
             description: post.subTitle,
-            url: post.url,
+            datePublished: post.publishedAt,
+            url: `${SITE_URL}/blog/${post.slug}/`,
+            sameAs: post.mediumUrl,
+            keywords: post.tags.join(", "),
             author: { "@id": personId },
-            publisher: {
-              "@type": "Organization",
-              name: post.platform,
-            },
+            publisher: { "@id": personId },
           },
         })),
       },

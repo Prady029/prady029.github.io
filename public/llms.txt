@@ -10,5 +10,5 @@
 ## Key Profiles & Publications
 - [GitHub (@Prady029)](https://github.com/Prady029): Open-source ML/AI repositories, multi-label learning research, and interactive apps.
 - [LinkedIn](https://www.linkedin.com/in/prady029): Professional background and career history.
-- [Medium (@prady029)](https://www.medium.com/@prady029): Technical notes and essays.
+- [Blog & Writing](https://prady029.github.io/blog/): Articles on Linux configuration, open-source mobile privacy, and research interviews (also syndicated on [Medium](https://www.medium.com/@prady029)).
 - [Music Visualiser (Live App)](https://prady029.github.io/Music_Visualiser/): 1st-place house-party vibe-coding winner; browser Web Audio visualiser with 14 HiDPI Canvas 2D modes and 29 OKLab themes.
