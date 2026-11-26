@@ -7,7 +7,7 @@ import { blogs, personalInfo } from "@/data/portfolio";
 export const metadata: Metadata = {
   title: `Writing — ${personalInfo.name}`,
   description:
-    "Articles, technical notes, and essays by Pradyumna Kumar Sahoo on Linux systems, open-source privacy, and research interviews.",
+    "Articles, technical notes, and essays by Pradyumna Kumar Sahoo on LLM inference, Linux systems, open-source privacy, and research interviews.",
   alternates: {
     canonical: "/blog/",
   },
